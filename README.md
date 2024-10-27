@@ -1,3 +1,6 @@
+# Spanish-AVSR
+AVSR System for Spanish Language: This repository contains the development of an Audiovisual Speech Recognition (AVSR) system based on the AV-HuBERT (Audio-Visual Hidden Unit BERT) model, specifically adapted for the Spanish language. This project is notable for being the first AVSR system tailored to Spanish.
+
 # AV-HuBERT (Audio-Visual Hidden Unit BERT)
 [Learning Audio-Visual Speech Representation by Masked Multimodal Cluster Prediction](https://arxiv.org/abs/2201.02184)
 
@@ -161,4 +164,5 @@ If you want to test your model under noisy environment, append the following to 
 `+override.noise_wav=/path/to/noise override.noise_prob=1 override.noise_snr={snr}` 
 
  `{snr}` is the signal-to-noise ratio (SNR) and `/path/to/noise` is a folder containing noise manifest files (`/path/to/noise/{valid,test}.tsv`). See [`preparation`](avhubert/preparation/) for setting up this folder.
+
 
