@@ -86,24 +86,44 @@ def cut_patch(img, landmarks, height, width, threshold=5):
                          int(round(center_x) - round(width)): int(round(center_x) + round(width))])
     return cutted_img
 
+
 def write_video_ffmpeg(rois, target_path, ffmpeg):
     os.makedirs(os.path.dirname(target_path), exist_ok=True)
     decimals = 10
     fps = 25
     tmp_dir = tempfile.mkdtemp()
     for i_roi, roi in enumerate(rois):
-        cv2.imwrite(os.path.join(tmp_dir, str(i_roi).zfill(decimals)+'.png'), roi)
+        cv2.imwrite(os.path.join(tmp_dir, str(i_roi).zfill(decimals) + '.png'), roi)
     list_fn = os.path.join(tmp_dir, "list")
     with open(list_fn, 'w') as fo:
-        fo.write("file " + "'" + tmp_dir+'/%0'+str(decimals)+'d.png' + "'\n")
-    ## ffmpeg
+        fo.write("file " + "'" + tmp_dir + '/%0' + str(decimals) + 'd.png' + "'\n")
+    
+    """
+    print(f"Se guardaron {len(rois)} imágenes en {tmp_dir}")
+    """
+    
+    # Ejecutar FFmpeg
     if os.path.isfile(target_path):
         os.remove(target_path)
     cmd = [ffmpeg, "-f", "concat", "-safe", "0", "-i", list_fn, "-q:v", "1", "-r", str(fps), '-y', '-crf', '20', target_path]
-    pipe = subprocess.run(cmd, stdout = subprocess.PIPE, stderr = subprocess.STDOUT)
-    # rm tmp dir
+    
+    """
+    print(f"Ejecutando comando FFmpeg: {cmd}")
+    """
+
+    pipe = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+    """
+    # Imprimir salida y errores de FFmpeg
+    print("Salida de FFmpeg:")
+    print(pipe.stdout.decode())
+    print("Errores de FFmpeg (si los hay):")
+    print(pipe.stderr.decode())
+    """
+    # Borrar directorio temporal
     shutil.rmtree(tmp_dir)
     return
+
 
 def load_args(default_config=None):
     parser = argparse.ArgumentParser(description='Lipreading Pre-processing', formatter_class=argparse.ArgumentDefaultsHelpFormatter)

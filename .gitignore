@@ -1,0 +1,8 @@
+# Ignorar datasets
+avhubert/data/datasets/
+# Ignorar archivos de caché de Python
+__pycache__/
+# Ignorar la carpeta de configuración de VSCode
+.vscode/
+# Ignorar checkpoints
+avhubert/checkpoints/
