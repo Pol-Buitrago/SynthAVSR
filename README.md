@@ -1,6 +1,6 @@
 
-# Spanish-AVSR (Audiovisual Speech Recognition in Spanish)
-[Link to Paper - Coming Soon!]
+# Spanish-AVSR (Audiovisual Speech Recognition in Spanish) 🎤🇪🇸
+[Link to Paper - Coming Soon! 📄]
 
 ## Introduction
 Spanish-AVSR is an adaptation of AV-HuBERT for Audiovisual Speech Recognition (AVSR) specifically in the Spanish language. Based on **AV-HuBERT**, a self-supervised framework, this project aims to bridge the gap in AVSR technology for Spanish, achieving state-of-the-art performance in lip-reading, ASR, and audiovisual speech recognition for Spanish speakers.
@@ -18,11 +18,11 @@ If you find Spanish-AVSR useful for your research, please cite our upcoming publ
 }
 ```
 
-## Pre-trained and Fine-tuned Models
+## Pre-trained and Fine-tuned Models 🧩
 
 Checkpoints and models adapted for Spanish-AVSR will be made available [here](link-to-checkpoints).
 
-## Installation
+## Installation ⚙️
 
 To get started with Spanish-AVSR, set up a virtual environment using Conda:
 
@@ -44,28 +44,15 @@ Install the required dependencies:
 pip install -r requirements.txt
 ```
 
-## Data Preparation
-
+## Data Preparation 📊
 Follow the steps in [`data/preparation`](data/preparation) to preprocess:
 
 
-## Loading a Pretrained Model
-
-```python
-import fairseq
-ckpt_path = "/path/to/the/checkpoint.pt"
-models, cfg, task = fairseq.checkpoint_utils.load_model_ensemble_and_task([ckpt_path])
-model = models[0]
-```
-
-Aquí tienes la sección del README para la parte de **Decoding and Inference** que incluye información sobre el script `infer_AVSR.py` y cómo usarlo para realizar inferencias en lip reading, ASR, y AVSR:
-
-
-## Decoding and Inference
+## Decoding and Inference 🔍
 
 For lip reading, ASR, or full AVSR, use the provided script located at `avhubert/infer_AVSR.py`. This script allows you to perform inference on audio-visual inputs, leveraging pre-trained models.
 
-### Usage
+### Usage 🛠️
 
 To use the inference script, follow these steps:
 
@@ -103,11 +90,11 @@ def predict(task_type, video_path=None, audio_path=None, user_dir="", ckpt_path=
 #### Output:
 The function returns the predicted text based on the selected task type.
 
-### Notes
+### Notes 📝
 - Ensure that the paths to your video and checkpoint is correctly set.
 - The video should contain a clear view of the speaker's face for accurate lip reading.
 - The audio should be synchronized with the video for best results.
 
 
-## License
+## License 📜
 This project follows the AV-HuBERT LICENSE AGREEMENT by Meta Platforms, Inc. For full terms, see [LICENSE](link-to-license-file).
