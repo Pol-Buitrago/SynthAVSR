@@ -36,12 +36,21 @@ Then, clone the repository:
 ```bash
 git clone https://github.com/Pol-Buitrago/Spanish-AVSR.git
 cd Spanish-AVSR
+git submodule init
+git submodule update
 ```
 
 Install the required dependencies:
 
 ```bash
 pip install -r requirements.txt
+```
+
+Lastly, install Fairseq and the other packages:
+```bash
+pip install -r requirements.txt
+cd fairseq
+pip install --editable ./
 ```
 
 ## Data Preparation 📊

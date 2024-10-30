@@ -1,5 +1,6 @@
 # Ignorar datasets
 avhubert/data/datasets/
+avhubert/data/demos/
 # Ignorar archivos de caché de Python
 __pycache__/
 # Ignorar la carpeta de configuración de VSCode

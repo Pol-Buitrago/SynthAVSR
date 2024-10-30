@@ -49,26 +49,6 @@ Please find the checkpoints [here](http://facebookresearch.github.io/av_hubert)
 ## Demo
 Run our lip-reading demo using Colab: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1bNXkfpHiVHzXQH8WjGhzQ-fsDxolpUjD)
 
-## Installation
-First, create a conda virtual environment and activate it:
-```
-conda create -n avhubert python=3.8 -y
-conda activate avhubert
-```
-Then, clone this directory:
-```
-git clone https://github.com/facebookresearch/av_hubert.git
-cd avhubert
-git submodule init
-git submodule update
-```
-
-Lastly, install Fairseq and the other packages:
-```
-pip install -r requirements.txt
-cd fairseq
-pip install --editable ./
-```
 
 ## Load a pretrained model
 ```sh

@@ -1,4 +1,14 @@
 #!/bin/bash
+#SBATCH --job-name=lrs3_prepare         # Nombre de la tarea
+#SBATCH --account=bsc88       
+#SBATCH -t 2-00:00:00                   # Tiempo (ajustar según el tamaño de los datos)
+#SBATCH -q acc_bscls                    # Quality of Service para GPUs
+#SBATCH -c 80                           # CPUs por tarea
+#SBATCH --gres=gpu:4                    # GPUS
+#SBATCH --ntasks=1                      # Número de tareas
+#SBATCH -N 1                            # Número de nodos
+#SBATCH --output=/gpfs/projects/bsc88/speech/research/repos/av_hubert/output/lrs3_prepare_%j.log
+#SBATCH --error=/gpfs/projects/bsc88/speech/research/repos/av_hubert/error/lrs3_prepare_%j.err
 
 ###########################################################################################################################
 ########################################### LRS3 data preparation script ##################################################
@@ -6,6 +16,9 @@
 
 # Este script realiza todos los pasos necesarios para preparar los archivos de manifiesto (*.tsv, *.wrd)
 # y los archivos necesarios para realizar inferencias con AV-HuBERT en el conjunto de datos LRS3.
+
+# Activar el entorno conda donde tienes las dependencias
+source activate avhubert
 
 # Rutas base para los archivos
 DATA_DIR="/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data"
@@ -25,16 +38,21 @@ RANK=0          # Índice de shard a procesar (0 si solo usas un shard)
 # Paso 1: Preparación de los datos
 # -----------------------------------------------------------------------------
 # Ejecuta el script lrs3_prepare.py para generar la lista de archivos y transcripciones
-# El parámetro --step 4 genera los archivos file.list y label.list necesarios.
 # -----------------------------------------------------------------------------
 
 echo "=== Paso 1: Preparación de los datos ==="
-python preparation/lrs3_prepare.py \
-  --lrs3 "$LRS3_DIR" \
-  --ffmpeg "$FFMPEG_PATH" \
-  --rank $RANK \
-  --nshard $N_SHARD \
-  --step 4
+
+# Bucle para ejecutar cada paso
+for step in {1..4}; do
+  echo "Ejecutando paso $step"
+  python preparation/lrs3_prepare.py \
+    --lrs3 "$LRS3_DIR" \
+    --ffmpeg "$FFMPEG_PATH" \
+    --rank $RANK \
+    --nshard $N_SHARD \
+    --step $step
+done
+
 
 # Explicación:
 # --lrs3: Ruta hacia los datos LRS3.
