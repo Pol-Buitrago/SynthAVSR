@@ -41,20 +41,20 @@ def detect_face_landmarks(face_predictor_path, cnn_detector_path, root_dir, land
     fids = fids[start_id: end_id]
     print(f"{len(fids)} files")
     for fid in tqdm(fids):
-        output_fn = os.path.join(output_dir, fid+'.pkl')
+        output_fn = os.path.join(output_dir, fid + '.pkl')
         
         # Si el archivo ya existe, saltarlo
         if os.path.exists(output_fn):
-            # print(f"Skipping {fid}, landmarks already processed.")
+            print(f"Skipping {fid}, landmarks already processed.")
             continue  # Salta al siguiente video
-
-        video_path = os.path.join(input_dir, fid+'.mp4')
+        
+        video_path = os.path.join(input_dir, fid + '.mp4')
         frames = load_video(video_path)
         landmarks = []
         for frame in frames:
             landmark = detect_landmark(frame, detector, cnn_detector, predictor)
             landmarks.append(landmark)
-            
+        
         os.makedirs(os.path.dirname(output_fn), exist_ok=True)
         pickle.dump(landmarks, open(output_fn, 'wb'))
     return

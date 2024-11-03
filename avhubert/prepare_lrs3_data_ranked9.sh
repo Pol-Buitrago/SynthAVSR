@@ -2,9 +2,8 @@
 #SBATCH --job-name=lrs3_prepare         # Nombre de la tarea
 #SBATCH --account=bsc88       
 #SBATCH -t 2-00:00:00                   # Tiempo (ajustar según el tamaño de los datos)
-#SBATCH -q acc_bscls                    # Quality of Service para GPUs
-#SBATCH -c 80                           # CPUs por tarea
-#SBATCH --gres=gpu:4                    # GPUS
+#SBATCH -q gp_bscls                    # Quality of Service para GPUs
+#SBATCH -c 100                           # CPUs por tarea
 #SBATCH --ntasks=1                      # Número de tareas
 #SBATCH -N 1                            # Número de nodos
 #SBATCH --output=/gpfs/projects/bsc88/speech/research/repos/av_hubert/output/lrs3_prepare_%j.log
@@ -30,8 +29,8 @@ DLIB_CNN_DETECTOR="$DATA_DIR/misc/mmod_human_face_detector.dat"             # Ru
 DLIB_FACE_DETECTOR="$DATA_DIR/misc/shape_predictor_68_face_landmarks.dat"   # Ruta al predictor de landmarks
 MEAN_FACE_PATH="$DATA_DIR/misc/20words_mean_face.npy"                       # Ruta hacia el archivo mean_face.npy (descargado del repo de AV-HuBERT)
 
-N_SHARD=1       # Número de shards (partes en que dividimos los datos para procesamiento)
-RANK=0          # Índice de shard a procesar (0 si solo usas un shard)
+N_SHARD=20       # Número de shards (partes en que dividimos los datos para procesamiento)
+RANK=19          # Índice de shard a procesar (0 si solo usas un shard)
 
 
 
@@ -70,7 +69,7 @@ EOF
 # -----------------------------------------------------------------------------
 
 echo "=== Paso 2: Detección de landmarks faciales ==="
-python preparation/detect_landmark.py \
+python preparation/detect_new_landmark.py \
   --root "$LRS3_DIR" \
   --landmark "$LRS3_DIR/landmark" \
   --manifest "$LRS3_DIR/file.list" \

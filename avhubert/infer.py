@@ -6,7 +6,7 @@ from colorama import init, Fore, Style
 ########################## Modificar aquí las rutas ##############################################
 ##################################################################################################
 # Ruta base a los datos
-base_data_dir = "/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/demos"
+base_data_dir = "/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/demos/demo_ES"
 
 # Definición de las variables de entrada
 task_type = 'ALL'  # Cambia a 'ALL' para ejecutar todas las modalidades

@@ -71,7 +71,7 @@ def predict(task_type, video_path=None, audio_path=None, transcription_path=None
     if task_type == "AVSR":
         tsv_cont = ["/\n", f"test-0\t{roi_path}\t{audio_path}\t{num_frames}\t{duration_ms}\n"]
         modalities = ["audio", "video"]
-        ckpt_path = os.path.join(base_ckpt_path, "AVSR_Finetuned_Models", "English_EN", "large_noise_pt_noise_ft_433h.pt")
+        ckpt_path = "/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/checkpoints/AVSR_Finetuned_Models/Spanish_ES/best_ckpt.pt"
     elif task_type == "ASR":
         tsv_cont = ["/\n", f"test-0\t{None}\t{audio_path}\t{num_frames}\t{duration_ms}\n"]
         modalities = ["audio"]
