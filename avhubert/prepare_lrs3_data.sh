@@ -52,6 +52,13 @@ for step in {1..4}; do
     --nshard $N_SHARD \
     --step $step
 done
+
+python preparation/lrs3_prepare.py \
+  --lrs3 "$LRS3_DIR" \
+  --ffmpeg "$FFMPEG_PATH" \
+  --rank $RANK \
+  --nshard $N_SHARD \
+  --step 4
 EOF
 
 # Explicación:
