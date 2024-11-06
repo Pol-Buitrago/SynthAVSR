@@ -10,9 +10,9 @@ y el dataset para que el script funcione correctamente.
 
 import os
 
-# Rutas de acceso configuradas para el entorno 
+# Rutas de acceso configuradas para el entorno
 CONFIG_DIR = "/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/conf"
-CHECKPOINT_PATH = "/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/checkpoints/AVSR_Finetuned_Models/English_EN/base_noise_pt_noise_ft_30h.pt"
+CHECKPOINT_PATH = "/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/checkpoints/AVSR_Finetuned_Models/Spanish_ES/best_ckpt.pt"
 DATASET_DIR = "/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/datasets/dataset_ES/LIP_RTVE/model_data"
 RESULTS_PATH = "/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/experiment/decode/s2s/test"
 
@@ -30,7 +30,8 @@ cmd = (
     f"override.data={DATASET_DIR} "
     f"override.label_dir={DATASET_DIR} "
     f"generation.beam={BEAM_SIZE} "
-    f"generation.lenpen={LENPEN}"
+    f"generation.lenpen={LENPEN} "
+
 )
 
 
