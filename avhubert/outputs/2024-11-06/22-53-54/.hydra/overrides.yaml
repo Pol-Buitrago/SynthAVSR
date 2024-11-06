@@ -1,0 +1,12 @@
+- common.user_dir=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/conf
+- override.modalities=[video,audio]
+- dataset.gen_subset=test
+- override.data=/gpfs/projects/bsc88/speech/research/repos/muavic/es
+- override.label_dir=/gpfs/projects/bsc88/speech/research/repos/muavic/es
+- override.tokenizer_bpe_model=/path/to/tokenizer
+- generation.beam=20
+- generation.lenpen=1.0
+- dataset.max_tokens=3000
+- override.eval_bleu=False
+- common_eval.path=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/checkpoints/AVSR_Finetuned_Models/Spanish_ES/best_ckpt.pt
+- common_eval.results_path=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/experiment/decode/s2s/test/es_avsr

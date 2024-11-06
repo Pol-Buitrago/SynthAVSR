@@ -15,6 +15,7 @@ CONFIG_DIR = "/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/conf
 CHECKPOINT_PATH = "/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/checkpoints/AVSR_Finetuned_Models/English_EN/base_noise_pt_noise_ft_30h.pt"
 DATASET_DIR = "/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/datasets/dataset_EN/lrs3/30h_data"
 RESULTS_PATH = "/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/experiment/decode/s2s/test"
+TOKENIZER_PATH = "/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/checkpoints/AVSR_Finetuned_Models/Spanish_ES/tokenizer.model"
 
 # Parámetros de decodificación para optimizar el WER
 BEAM_SIZE = 20
@@ -31,6 +32,7 @@ cmd = (
     f"override.label_dir={DATASET_DIR} "
     f"generation.beam={BEAM_SIZE} "
     f"generation.lenpen={LENPEN} "
+    f"override.tokenizer_bpe_model={TOKENIZER_PATH}"
 )
 
 

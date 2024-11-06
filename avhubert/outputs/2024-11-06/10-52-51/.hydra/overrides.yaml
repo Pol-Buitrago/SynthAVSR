@@ -1,7 +1,0 @@
-- dataset.gen_subset=test
-- common_eval.path=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/checkpoints/AVSR_Finetuned_Models/English_EN/base_noise_pt_noise_ft_30h.pt
-- common_eval.results_path=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/experiment/decode/s2s/test
-- override.modalities=[audio]
-- common.user_dir=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert
-- override.data=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/datasets/dataset_EN/lrs3/30h_data
-- override.label_dir=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/datasets/dataset_EN/lrs3/30h_data
