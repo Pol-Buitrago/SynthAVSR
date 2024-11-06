@@ -188,7 +188,15 @@ class AVHubertDataset(FairseqDataset):
         self.single_target = single_target
         self.store_labels = store_labels
         self.is_s2s = is_s2s
-        self.noise_wav, self.noise_prob, self.noise_snr, self.noise_num = [ln.strip() for ln in open(noise_fn).readlines()] if noise_fn is not None else [], noise_prob, noise_snr, noise_num
+
+        #noise_fn = None # Por ahora trabajaré en ausencia de ruido
+
+        if noise_fn is not None:
+            noise_wav = [ln.strip() for ln in open(noise_fn).readlines()] 
+        else: noise_wav = []
+
+        self.noise_wav, self.noise_prob, self.noise_snr, self.noise_num = noise_wav, noise_prob, noise_snr, noise_num
+
 
         assert self.single_target == (self.label_rates[0] == -1), f"single target should be equivalent to sequence label (label_rate==-1)"
         if store_labels:
@@ -238,10 +246,10 @@ class AVHubertDataset(FairseqDataset):
         if self.store_labels:
             label = self.label_list[label_idx][index]
         else:
-            with open(self.label_paths[label_idx], 'rb') as f:
+            with open(self.label_paths[label_idx]) as f:
                 offset_s, offset_e = self.label_offsets_list[label_idx][index]
                 f.seek(offset_s)
-                label = f.read(offset_e - offset_s).decode("utf-8").strip()
+                label = f.read(offset_e - offset_s)
 
         if self.label_processors is not None:
             label = self.label_processors[label_idx](label)
@@ -302,6 +310,11 @@ class AVHubertDataset(FairseqDataset):
         return feats
 
     def select_noise(self):
+        ##################################################################################################################
+        if len(self.noise_wav) == 0:
+            print("Advertencia: No hay datos de ruido disponibles en 'self.noise_wav'. Se omitirá la adición de ruido.")
+            return None  # Opcional: podrías devolver un valor por defecto o un ruido sin alteraciones
+        ##################################################################################################################
         rand_indexes = np.random.randint(0, len(self.noise_wav), size=self.noise_num)
         noise_wav = []
         for x in rand_indexes:
@@ -317,6 +330,12 @@ class AVHubertDataset(FairseqDataset):
     def add_noise(self, clean_wav):
         clean_wav = clean_wav.astype(np.float32)
         noise_wav = self.select_noise()
+        ##################################################################################################################
+        if noise_wav is None:
+            # No se aplicará ruido si select_noise no devuelve ningún ruido
+            print("Advertencia: Omitiendo adición de ruido ya que no hay ruido disponible.")
+            return clean_wav  # Retornar los datos de audio originales sin modificaciones
+        ##################################################################################################################
         if type(self.noise_snr) == int or type(self.noise_snr) == float:
             snr = self.noise_snr
         elif type(self.noise_snr) == tuple:
