@@ -189,7 +189,7 @@ class AVHubertDataset(FairseqDataset):
         self.store_labels = store_labels
         self.is_s2s = is_s2s
 
-        noise_fn = None # Por ahora trabajaré en ausencia de ruido
+        #noise_fn = None # Por ahora trabajaré en ausencia de ruido
 
         if noise_fn is not None:
             noise_wav = [ln.strip() for ln in open(noise_fn).readlines()] 

@@ -59,7 +59,7 @@ python preparation/lrs3_prepare.py \
   --rank $RANK \
   --nshard $N_SHARD \
   --step 4
-EOF
+
 
 # Explicación:
 # --lrs3: Ruta hacia los datos LRS3.
@@ -144,6 +144,7 @@ cat "$LRS3_DIR/nframes.video.$RANK" > "$LRS3_DIR/nframes.video"
 # Explicación:
 # Combina los resultados del conteo de frames para audio y vídeo. Como solo procesamos un shard,
 # los resultados ya están completos en nframes.audio y nframes.video.
+EOF
 
 # Paso 4: Generación de archivos de manifiesto (train.tsv, valid.tsv, test.tsv) y transcripciones (*.wrd)
 # -----------------------------------------------------------------------------
@@ -151,12 +152,11 @@ cat "$LRS3_DIR/nframes.video.$RANK" > "$LRS3_DIR/nframes.video"
 # -----------------------------------------------------------------------------
 
 VOCAB_SIZE=1000  # Ajusta el tamaño del vocabulario según tu necesidad
-VALID_IDS="/ruta/a/valid_ids"  # Ruta al archivo con los IDs de clips reservados para validación (puedes crear uno si es necesario)
+VALID_IDS="/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/preparation/data/lrs3-valid.id"  # Ruta al archivo con los IDs de clips reservados para validación
 
 echo "=== Paso 4: Generación de manifiestos y transcripciones ==="
-python lrs3_manifest.py \
+python preparation/lrs3_manifest.py \
   --lrs3 "$LRS3_DIR" \
-  --manifest "$LRS3_DIR/file.list" \
   --valid-ids "$VALID_IDS" \
   --vocab-size $VOCAB_SIZE
 
