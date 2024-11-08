@@ -71,7 +71,7 @@ def predict(task_type, video_path=None, audio_path=None, transcription_path=None
     if task_type == "AVSR":
         tsv_cont = ["/\n", f"test-0\t{roi_path}\t{audio_path}\t{num_frames}\t{duration_ms}\n"]
         modalities = ["audio", "video"]
-        ckpt_path = os.path.join(base_ckpt_path, "AVSR_Finetuned_Models", "English_EN", "large_noise_pt_noise_ft_433h.pt")
+        ckpt_path = os.path.join(base_ckpt_path, "AVSR_Finetuned_Models", "English_EN", "best_ckpt.pt")
     elif task_type == "ASR":
         tsv_cont = ["/\n", f"test-0\t{None}\t{audio_path}\t{num_frames}\t{duration_ms}\n"]
         modalities = ["audio"]
@@ -97,6 +97,7 @@ def predict(task_type, video_path=None, audio_path=None, transcription_path=None
     # Configuración de generación
     gen_subset = "test"
     gen_cfg = GenerationConfig(beam=20)
+    
 
     # Cargar modelo y configuraciones
     models, saved_cfg, task = checkpoint_utils.load_model_ensemble_and_task([ckpt_path])
@@ -105,7 +106,8 @@ def predict(task_type, video_path=None, audio_path=None, transcription_path=None
     saved_cfg.task.data = data_dir
     saved_cfg.task.label_dir = data_dir
     task = tasks.setup_task(saved_cfg.task)
-    task.load_dataset(gen_subset, task_cfg=saved_cfg.task)
+    #task.load_dataset(gen_subset, task_cfg=saved_cfg.task)
+    task.load_dataset(saved_cfg.dataset.gen_subset, task_cfg=task.cfg)
 
     generator = task.build_generator(models, gen_cfg)
 

@@ -262,7 +262,6 @@ def _main(cfg, output_file):
             if cfg.override.use_normalizer:
                 hypo_str = normalizer(hypo_str)
                 ref_sent = normalizer(ref_sent)
-                print("\n\n\n USING NORMALIZER \n\n\n")
             ####################################
 
             result_dict['hypo'].append(hypo_str)

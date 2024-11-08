@@ -1,16 +1,9 @@
-import os
+import os    
+import subprocess
 
 def finetune_avhubert(config_dir, config_name, data_dir, label_dir, tokenizer_model, checkpoint_path, run_dir):
     """
     Función para ejecutar el fine-tuning de un modelo AV-HuBERT.
-
-    :param config_dir: Directorio donde se encuentra el archivo de configuración.
-    :param config_name: Nombre del archivo de configuración.
-    :param data_dir: Ruta al directorio con los datos (.tsv).
-    :param label_dir: Ruta al directorio con las etiquetas (.wrd).
-    :param tokenizer_model: Ruta al modelo BPE para tokenización.
-    :param checkpoint_path: Ruta al modelo preentrenado.
-    :param run_dir: Directorio donde se guardarán los resultados del entrenamiento.
     """
     
     # Comando de entrenamiento
@@ -30,6 +23,8 @@ def finetune_avhubert(config_dir, config_name, data_dir, label_dir, tokenizer_mo
     
     # Ejecutar el comando
     os.system(cmd)
+    #subprocess.run(cmd, shell=True, check=True)
+
 
 if __name__ == "__main__":
     # Valores por defecto definidos dentro del script
