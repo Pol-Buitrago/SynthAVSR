@@ -42,6 +42,14 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from omegaconf import OmegaConf
 import sacrebleu
 
+########################### NORMALIZER ###########################
+#from whisper_normalizer.basic import BasicTextNormalizer
+from whisper_normalizer.english import EnglishTextNormalizer
+
+# Inicializar el normalizador
+# normalizer = BasicTextNormalizer()
+normalizer = EnglishTextNormalizer()
+###################################################################
 
 logging.root.setLevel(logging.INFO)
 logging.basicConfig(level=logging.INFO)
@@ -60,6 +68,8 @@ class OverrideConfig(FairseqDataclass):
     labels: Optional[List[str]] = field(default=None, metadata={"help": "list of labels"})
     eval_bleu: bool = field(default=False, metadata={'help': 'evaluate bleu score'})
     tokenizer_bpe_model: Optional[str] = field(default=None, metadata={'help': 'path to tokenizer'})
+    use_normalizer: bool = field(default=True, metadata={'help': 'Whether to use the normalizer'})
+
 
 @dataclass
 class InferConfig(FairseqDataclass):
@@ -247,6 +257,14 @@ def _main(cfg, output_file):
             result_dict['ref'].append(ref_sent)
             best_hypo = hypos[i][0]['tokens'].int().cpu()
             hypo_str = decode_fn(best_hypo)
+
+            ######## WHISPER NORMALIZER ########
+            if cfg.override.use_normalizer:
+                hypo_str = normalizer(hypo_str)
+                ref_sent = normalizer(ref_sent)
+                print("\n\n\n USING NORMALIZER \n\n\n")
+            ####################################
+
             result_dict['hypo'].append(hypo_str)
             logger.info(f"\nREF:{ref_sent}\nHYP:{hypo_str}\n")
         wps_meter.update(num_generated_tokens)

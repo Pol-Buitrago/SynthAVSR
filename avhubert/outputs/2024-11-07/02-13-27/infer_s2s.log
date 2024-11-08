@@ -1,0 +1,160 @@
+[2024-11-07 02:13:30,577][avhubert.hubert_pretraining][INFO] - current directory is /gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/outputs/2024-11-07/02-13-27
+[2024-11-07 02:13:30,577][avhubert.hubert_pretraining][INFO] - AVHubertPretrainingTask Config {'_name': 'av_hubert_pretraining', 'data': '/checkpoint/bshi/data/lrs3//video/wav/all_tsv/', 'input_modality': '???', 'labels': ['wrd'], 'label_dir': '/checkpoint/bshi/data/lrs3//exp/ls-hubert/tune-modality/all_bpe/unigram1000/', 'label_rate': -1, 'sample_rate': 16000, 'normalize': True, 'enable_padding': False, 'max_sample_size': 500, 'min_sample_size': None, 'max_trim_sample_size': '${task.max_sample_size}', 'single_target': True, 'random_crop': False, 'pad_audio': True, 'pdb': False, 'stack_order_audio': 4, 'skip_verify': False, 'image_aug': True, 'image_crop_size': 88, 'image_mean': 0.421, 'image_std': 0.165, 'modalities': ['audio', 'video'], 'is_s2s': True, 'tokenizer_bpe_name': 'sentencepiece', 'tokenizer_bpe_model': '/checkpoint/bshi/data/lrs3//lang/spm/spm_unigram1000.model', 'noise_wav': '/checkpoint/bshi/data/lrs3//audio/noise/tsv/musan-lgall/', 'noise_prob': 0.25, 'noise_snr': '0', 'noise_num': 1, 'fine_tuning': True}
+[2024-11-07 02:13:30,613][avhubert.hubert_pretraining][INFO] - current directory is /gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/outputs/2024-11-07/02-13-27
+[2024-11-07 02:13:30,613][avhubert.hubert_pretraining][INFO] - AVHubertPretrainingTask Config {'_name': 'av_hubert_pretraining', 'data': '/checkpoint/bshi/data/lrs3//video/wav/all_tsv/', 'input_modality': 'image', 'labels': ['km'], 'label_dir': '/checkpoint/bshi/data/lrs3//video/hubert/stitch-iters/envox-iter4-l12c2000/', 'label_rate': 25, 'sample_rate': 25, 'normalize': True, 'enable_padding': False, 'max_sample_size': 2000, 'min_sample_size': 5, 'max_trim_sample_size': 400, 'single_target': False, 'random_crop': True, 'pad_audio': False, 'pdb': False, 'stack_order_audio': 4, 'skip_verify': False, 'image_aug': True, 'image_crop_size': 88, 'image_mean': 0.421, 'image_std': 0.165, 'modalities': ['audio', 'video'], 'is_s2s': False, 'tokenizer_bpe_name': None, 'tokenizer_bpe_model': None, 'noise_wav': '/checkpoint/bshi/data/lrs3//audio/noise/tsv/musan-lgall/', 'noise_prob': 0.25, 'noise_snr': '0', 'noise_num': 1, 'fine_tuning': False}
+[2024-11-07 02:13:30,619][avhubert.hubert][INFO] - HubertModel Config: {'_name': 'av_hubert', 'label_rate': 25, 'input_modality': '${task.input_modality}', 'extractor_mode': default, 'encoder_layers': 24, 'encoder_embed_dim': 1024, 'encoder_ffn_embed_dim': 4096, 'encoder_attention_heads': 16, 'activation_fn': gelu, 'dropout': 0.1, 'attention_dropout': 0.1, 'activation_dropout': 0.0, 'encoder_layerdrop': 0.05, 'dropout_input': 0.1, 'dropout_features': 0.1, 'final_dim': 256, 'untie_final_proj': True, 'layer_norm_first': True, 'conv_feature_layers': '[(512,10,5)] + [(512,3,2)] * 4 + [(512,2,2)] * 2', 'conv_bias': False, 'logit_temp': 0.1, 'target_glu': False, 'feature_grad_mult': 0.1, 'mask_length_audio': 10, 'mask_prob_audio': 0.8, 'mask_length_image': 5, 'mask_prob_image': 0.3, 'mask_selection': static, 'mask_other': 0.0, 'no_mask_overlap': False, 'mask_min_space': 1, 'mask_channel_length': 10, 'mask_channel_prob': 0.0, 'mask_channel_selection': static, 'mask_channel_other': 0.0, 'no_mask_channel_overlap': False, 'mask_channel_min_space': 1, 'conv_pos': 128, 'conv_pos_groups': 16, 'latent_temp': [2.0, 0.5, 0.999995], 'skip_masked': False, 'skip_nomask': False, 'resnet_relu_type': 'prelu', 'resnet_weights': None, 'sim_type': 'cosine', 'sub_encoder_layers': 0, 'audio_feat_dim': 104, 'modality_dropout': 0.5, 'audio_dropout': 0.5, 'modality_fuse': 'concat', 'selection_type': 'same_seq', 'masking_type': 'input', 'decoder_embed_dim': 768, 'decoder_ffn_embed_dim': 3072, 'decoder_layers': 6, 'decoder_layerdrop': 0.0, 'decoder_attention_heads': 4, 'decoder_learned_pos': False, 'decoder_normalize_before': False, 'no_token_positional_embeddings': False, 'decoder_dropout': 0.1, 'decoder_attention_dropout': 0.1, 'decoder_activation_dropout': 0.0, 'max_target_positions': 2048, 'share_decoder_input_output_embed': False, 'no_scale_embedding': True, 'required_seq_len_multiple': 1, 'layer_type': transformer, 'checkpoint_activations': False}
+[2024-11-07 02:13:35,321][hybrid.speech_recognize][INFO] - {'_name': None, 'task': None, 'generation': {'_name': None, 'beam': 20, 'nbest': 1, 'max_len_a': 1.0, 'max_len_b': 0, 'min_len': 1, 'match_source_len': False, 'unnormalized': False, 'no_early_stop': False, 'no_beamable_mm': False, 'lenpen': 1.0, 'unkpen': 0.0, 'replace_unk': None, 'sacrebleu': False, 'score_reference': False, 'prefix_size': 0, 'no_repeat_ngram_size': 0, 'sampling': False, 'sampling_topk': -1, 'sampling_topp': -1.0, 'constraints': None, 'temperature': 1.0, 'diverse_beam_groups': -1, 'diverse_beam_strength': 0.5, 'diversity_rate': -1.0, 'print_alignment': None, 'print_step': False, 'lm_path': None, 'lm_weight': 0.0, 'iter_decode_eos_penalty': 0.0, 'iter_decode_max_iter': 10, 'iter_decode_force_max_iter': False, 'iter_decode_with_beam': 1, 'iter_decode_with_external_reranker': False, 'retain_iter_history': False, 'retain_dropout': False, 'retain_dropout_modules': None, 'decoding_format': None, 'no_seed_provided': False}, 'common': {'_name': None, 'no_progress_bar': False, 'log_interval': 100, 'log_format': None, 'log_file': None, 'tensorboard_logdir': None, 'wandb_project': None, 'azureml_logging': False, 'seed': 1, 'cpu': False, 'tpu': False, 'bf16': False, 'memory_efficient_bf16': False, 'fp16': False, 'memory_efficient_fp16': False, 'fp16_no_flatten_grads': False, 'fp16_init_scale': 128, 'fp16_scale_window': None, 'fp16_scale_tolerance': 0.0, 'on_cpu_convert_precision': False, 'min_loss_scale': 0.0001, 'threshold_loss_scale': None, 'amp': False, 'amp_batch_retries': 2, 'amp_init_scale': 128, 'amp_scale_window': None, 'user_dir': '/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert', 'empty_cache_freq': 0, 'all_gather_list_size': 16384, 'model_parallel_size': 1, 'quantization_config_path': None, 'profile': False, 'reset_logging': False, 'suppress_crashes': False, 'use_plasma_view': False, 'plasma_path': '/tmp/plasma'}, 'common_eval': {'_name': None, 'path': '/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/checkpoints/AVSR_Finetuned_Models/English_EN/best_ckpt.pt', 'post_process': None, 'quiet': False, 'model_overrides': '{}', 'results_path': '/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/experiment/decode/s2s/valid'}, 'checkpoint': {'_name': None, 'save_dir': 'checkpoints', 'restore_file': 'checkpoint_last.pt', 'continue_once': None, 'finetune_from_model': None, 'reset_dataloader': False, 'reset_lr_scheduler': False, 'reset_meters': False, 'reset_optimizer': False, 'optimizer_overrides': '{}', 'save_interval': 1, 'save_interval_updates': 0, 'keep_interval_updates': -1, 'keep_interval_updates_pattern': -1, 'keep_last_epochs': -1, 'keep_best_checkpoints': -1, 'no_save': False, 'no_epoch_checkpoints': False, 'no_last_checkpoints': False, 'no_save_optimizer_state': False, 'best_checkpoint_metric': 'loss', 'maximize_best_checkpoint_metric': False, 'patience': -1, 'checkpoint_suffix': '', 'checkpoint_shard_count': 1, 'load_checkpoint_on_all_dp_ranks': False, 'write_checkpoints_asynchronously': False, 'model_parallel_size': 1}, 'distributed_training': {'_name': None, 'distributed_world_size': 1, 'distributed_num_procs': 1, 'distributed_rank': 0, 'distributed_backend': 'nccl', 'distributed_init_method': None, 'distributed_port': -1, 'device_id': 0, 'distributed_no_spawn': False, 'ddp_backend': 'pytorch_ddp', 'ddp_comm_hook': 'none', 'bucket_cap_mb': 25, 'fix_batches_to_gpus': False, 'find_unused_parameters': False, 'gradient_as_bucket_view': False, 'fast_stat_sync': False, 'heartbeat_timeout': -1, 'broadcast_buffers': False, 'slowmo_momentum': None, 'slowmo_base_algorithm': 'localsgd', 'localsgd_frequency': 3, 'nprocs_per_node': 1, 'pipeline_model_parallel': False, 'pipeline_balance': None, 'pipeline_devices': None, 'pipeline_chunks': 0, 'pipeline_encoder_balance': None, 'pipeline_encoder_devices': None, 'pipeline_decoder_balance': None, 'pipeline_decoder_devices': None, 'pipeline_checkpoint': 'never', 'zero_sharding': 'none', 'fp16': False, 'memory_efficient_fp16': False, 'tpu': False, 'no_reshard_after_forward': False, 'fp32_reduce_scatter': False, 'cpu_offload': False, 'use_sharded_state': False, 'not_fsdp_flatten_parameters': False}, 'dataset': {'_name': None, 'num_workers': 0, 'skip_invalid_size_inputs_valid_test': False, 'max_tokens': 1000, 'batch_size': None, 'required_batch_size_multiple': 8, 'required_seq_len_multiple': 1, 'dataset_impl': None, 'data_buffer_size': 10, 'train_subset': 'train', 'valid_subset': 'valid', 'combine_valid_subsets': None, 'ignore_unused_valid_subsets': False, 'validate_interval': 1, 'validate_interval_updates': 0, 'validate_after_updates': 0, 'fixed_validation_seed': None, 'disable_validation': False, 'max_tokens_valid': 1000, 'batch_size_valid': None, 'max_valid_steps': None, 'curriculum': 0, 'gen_subset': 'valid', 'num_shards': 1, 'shard_id': 0, 'grouped_shuffling': False, 'update_epoch_batch_itr': False, 'update_ordered_indices_seed': False}, 'override': {'_name': None, 'noise_wav': None, 'noise_prob': 0.0, 'noise_snr': 0.0, 'modalities': ['video', 'audio'], 'data': '/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/datasets/dataset_EN/lrs3/30h_data', 'label_dir': '/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/datasets/dataset_EN/lrs3/30h_data', 'labels': ['wrd'], 'eval_bleu': False, 'tokenizer_bpe_model': '/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/checkpoints/AVSR_Finetuned_Models/English_EN/tokenizer.model', 'use_normalizer': False}, 'is_ax': False}
+[2024-11-07 02:13:35,325][avhubert.hubert_pretraining][INFO] - Using tokenizer
+[2024-11-07 02:13:35,329][avhubert.hubert_dataset][INFO] - max_keep=1000, min_keep=0, loaded 1200, skipped 0 short and 0 long and 0 unaligned, longest-loaded=155, shortest-loaded=17
+[2024-11-07 02:13:35,330][avhubert.hubert_dataset][INFO] - /gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/datasets/dataset_EN/lrs3/30h_data/valid.wrd is sequence label. skipped
+[2024-11-07 02:13:35,330][avhubert.hubert_dataset][INFO] - image transform: Compose(
+    Normalize(mean=0.0, std=255.0)
+    <avhubert.utils.CenterCrop object at 0x7f313c05ac70>
+    Normalize(mean=0.421, std=0.165)
+)
+[2024-11-07 02:13:35,330][avhubert.hubert_dataset][INFO] - pad_audio=True, random_crop=False, normalize=True, max_sample_size=500, seqs2seq data=True,
+[2024-11-07 02:13:35,330][avhubert.hubert_dataset][INFO] - Noise wav: None->0 wav, Prob: 0.0, SNR: 0.0, Number of mixture: 1
+[2024-11-07 02:13:37,215][hybrid.speech_recognize][INFO] - 
+REF:it's been shown that if we trigger some kinds of problems while people are asleep then they can be better
+HYP:it's been shown that if we trigger some kinds of problems while people are asleep then they can be better
+
+[2024-11-07 02:13:37,217][hybrid.speech_recognize][INFO] - 
+REF:and more than 500 million extra minutes of time after school has been spent learning
+HYP:and more than 500 million extra minutes of time after school has been spent learning
+
+[2024-11-07 02:13:37,220][hybrid.speech_recognize][INFO] - 
+REF:we got halfway there and working with animal welfare organizations who posted information about my campaign on their websites
+HYP:we got halfway there and working with animal welfare organizations who posted information about my campaign on the websites
+
+[2024-11-07 02:13:37,223][hybrid.speech_recognize][INFO] - 
+REF:moving from a big picture vision to a doable research project i wanted to study how energy storage could be
+HYP:moving from a big picture vision to a doable research project i wanted to study how energy storage could be
+
+[2024-11-07 02:13:37,226][hybrid.speech_recognize][INFO] - 
+REF:no i didn't say iphone i said a flip camera google that they are circa 2006 and i'd go
+HYP:now i didn't say iphone i said flip camera google that they're circa 2006 and i would go
+
+[2024-11-07 02:13:37,228][hybrid.speech_recognize][INFO] - 
+REF:it is such a thrill for a humble breakfast radio announcer from sydney australia to be here
+HYP:it is such a thrill for a humble breakfast radio announcer from sydney australia to be here
+
+[2024-11-07 02:13:37,716][hybrid.speech_recognize][INFO] - 
+REF:i remember being a teenager doing exchanges with a student in france and we had bowls of hot chocolate with
+HYP:i remember being a teenager doing exchanges with a student in france and we had bowls of hot chocolate with
+
+[2024-11-07 02:13:37,718][hybrid.speech_recognize][INFO] - 
+REF:they found themselves forced to abandon their nomadic lives forced to make contact with their aw neighbors
+HYP:they found themselves forced to abandon their nomadic lives forced to make contact with their aw in neighbors
+
+[2024-11-07 02:13:37,720][hybrid.speech_recognize][INFO] - 
+REF:that can be a fashion statement or it can be a statement about the kind of music they are into or perhaps a statement about how much
+HYP:that can be a fashion statement or it can be a statement about the kind of music that they're into or perhaps a statement about how much
+
+[2024-11-07 02:13:37,722][hybrid.speech_recognize][INFO] - 
+REF:if we did we could see that our own resources are easier to use than anybody
+HYP:if we did we could see that our own resources are easier to use than anybody
+
+[2024-11-07 02:13:37,725][hybrid.speech_recognize][INFO] - 
+REF:so if you were to bump in them at the water cooler and you want to make small talk and you want to say let's say you were busy at work
+HYP:if you were to bump into them at the water cooler and you want to make small talk and you want to say let's say you're busy at work and
+
+[2024-11-07 02:13:37,727][hybrid.speech_recognize][INFO] - 
+REF:so there i am in the embassy in beijing off to the great hall of the people with our ambassador who had asked me
+HYP:so there i am in the embassy in beijing off to the great hall of the people with our ambassador who had asked me to
+
+[2024-11-07 02:13:38,220][hybrid.speech_recognize][INFO] - 
+REF:indeed one wonders that without a duty of care how many people would have had to suffer from gastroenteritis before stevenson
+HYP:indeed one wonders without a duty of care how many people would have had to suffer from gastroenteritis before stevenson
+
+[2024-11-07 02:13:38,221][hybrid.speech_recognize][INFO] - 
+REF:and what's interesting is that the monkey number one is much healthier than monkey
+HYP:and what's interesting is that the monkey number one is much healthier than monkey
+
+[2024-11-07 02:13:38,223][hybrid.speech_recognize][INFO] - 
+REF:it was an app for smart devices and we encouraged people across australia to take part and log
+HYP:it was an app for smart devices and we encouraged people across australia to take part and log
+
+[2024-11-07 02:13:38,226][hybrid.speech_recognize][INFO] - 
+REF:girls aren't always nice to each other we have a lot of work or at least we think so we're very insecure and we're
+HYP:girls aren't always nice to each other we have a lot of work or at least we think so we're very insecure and
+
+[2024-11-07 02:13:38,227][hybrid.speech_recognize][INFO] - 
+REF:the day that there's no more waste bread to be brewed is the day that we can shut up shop and
+HYP:the day that there's no more waste bread to be brewed is the day that we can shut up shop and
+
+[2024-11-07 02:13:38,229][hybrid.speech_recognize][INFO] - 
+REF:all we did all day apart from gardening and cooking was hours and hours
+HYP:all we did all day apart from gardening and cooking was hours and hours of
+
+[2024-11-07 02:13:38,773][hybrid.speech_recognize][INFO] - 
+REF:but some groups and relationships deliver a cheap form of belonging you're valued for what you
+HYP:but some groups and relationships deliver a cheap form of belonging you're valued for what you
+
+[2024-11-07 02:13:38,775][hybrid.speech_recognize][INFO] - 
+REF:so curiosity is the main motivator for us to stay interested in things so
+HYP:so curiosity is the main motivator for us to stay interested in things so
+
+[2024-11-07 02:13:38,777][hybrid.speech_recognize][INFO] - 
+REF:i hope i can give you answers by the end of this 15 minute presentation but
+HYP:i hope i can give you answers by the end of this 15 minute presentation but
+
+[2024-11-07 02:13:38,779][hybrid.speech_recognize][INFO] - 
+REF:if that robot had figured out that i was a person not a chair and that i was willing to get out of its way if it was
+HYP:if that robot had figured out that i was a person not a chair and that i was willing to get out of its way if it was
+
+[2024-11-07 02:13:38,783][hybrid.speech_recognize][INFO] - 
+REF:and so the website features tips and scripts about how to do this and videos that actually model what that conversation looks like
+HYP:and so the website features tips and scripts about how to do this and videos that actually model what that conversation looks like
+
+[2024-11-07 02:13:38,785][hybrid.speech_recognize][INFO] - 
+REF:despite them being empty or despite them being lightly used no one else except the owner of
+HYP:despite them being empty or despite them being lightly used no one else except the owner of
+
+[2024-11-07 02:13:39,460][hybrid.speech_recognize][INFO] - 
+REF:and there can be self esteem issues associated with that notwithstanding the fact that i've been asked to do ted so i feel much
+HYP:and there can be self esteem issues associated with that not withstanding the fact that i've been asked to do ted so i feel much
+
+[2024-11-07 02:13:39,463][hybrid.speech_recognize][INFO] - 
+REF:a lot of our food comes from factory farms and factory ships monocrop agribusiness loaded with gmos shipped across the country or
+HYP:a lot of our food comes from factory farms and factory ships monocrop agribusness it's loaded with gmos it's shipped across the country or
+
+[2024-11-07 02:13:39,465][hybrid.speech_recognize][INFO] - 
+REF:so we decided what if we could identify the highest value services and build them in connection
+HYP:so we decided what if we could identify the highest value services and build them and connection
+
+[2024-11-07 02:13:39,467][hybrid.speech_recognize][INFO] - 
+REF:we want to take all of our existence and wrap it around that new knowledge and make all of these connections and it becomes more meaningful
+HYP:we want to take all of our existence and wrap it around that new knowledge and make all of these connections and it becomes more meaningful
+
+[2024-11-07 02:13:39,469][hybrid.speech_recognize][INFO] - 
+REF:but what that means is that you or someone who really struggles with anger can get very used to the sight of
+HYP:but what that means is that if you are someone who really struggles with anger you can get very used to the side
+
+[2024-11-07 02:13:39,471][hybrid.speech_recognize][INFO] - 
+REF:it shows role models to young men and women about fitness and about life that i
+HYP:it shows role models to young men and women about fitness and about life that i
+
+[2024-11-07 02:13:39,957][hybrid.speech_recognize][INFO] - 
+REF:and the only fishery left and it is a commercial fishery is the jellyfish fishery you see on
+HYP:and the only fishery left and it is a commercial fishery is the jellyfish fishery you see on the
+
+[2024-11-07 02:13:39,959][hybrid.speech_recognize][INFO] - 
+REF:some two key points that we saw that maybe you could use in your daily life or in your
+HYP:some two key points that we saw that maybe you could use in your daily life or in your
+
+[2024-11-07 02:13:39,961][hybrid.speech_recognize][INFO] - 
+REF:we were all really encouraged and inspired for the entire four days of the debate because these were people who saw
+HYP:we were all really really encouraged and inspired that way for the entire four days of the debate because these were people who sold
+
+[2024-11-07 02:13:39,963][hybrid.speech_recognize][INFO] - 
+REF:eighty five to 95 percent of species at this time die out and simultaneous to that is a
+HYP:eighty five to 95 percent of species at this time die out and simultaneous to that is
+
+[2024-11-07 02:13:39,965][hybrid.speech_recognize][INFO] - 
+REF:and while it is true i believe that most persons do not have an articulate and organized philosophy of life everyone
+HYP:and while it is true i believe that most persons do not have an articulate and organized philosophy of life everyone
+
+[2024-11-07 02:13:39,967][hybrid.speech_recognize][INFO] - 
+REF:one of the things that the men of men talk where the average age is mid 40s have said is how can we
+HYP:one of the things that the men of men talk the average age is probably mid 40s have said is how can we
+

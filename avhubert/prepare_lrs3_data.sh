@@ -39,7 +39,7 @@ RANK=0          # Índice de shard a procesar (0 si solo usas un shard)
 # -----------------------------------------------------------------------------
 # Ejecuta el script lrs3_prepare.py para generar la lista de archivos y transcripciones
 # -----------------------------------------------------------------------------
-: <<'EOF'
+
 echo "=== Paso 1: Preparación de los datos ==="
 
 # Bucle para ejecutar cada paso
@@ -52,13 +52,6 @@ for step in {1..4}; do
     --nshard $N_SHARD \
     --step $step
 done
-
-python preparation/lrs3_prepare.py \
-  --lrs3 "$LRS3_DIR" \
-  --ffmpeg "$FFMPEG_PATH" \
-  --rank $RANK \
-  --nshard $N_SHARD \
-  --step 4
 
 
 # Explicación:
@@ -144,7 +137,6 @@ cat "$LRS3_DIR/nframes.video.$RANK" > "$LRS3_DIR/nframes.video"
 # Explicación:
 # Combina los resultados del conteo de frames para audio y vídeo. Como solo procesamos un shard,
 # los resultados ya están completos en nframes.audio y nframes.video.
-EOF
 
 # Paso 4: Generación de archivos de manifiesto (train.tsv, valid.tsv, test.tsv) y transcripciones (*.wrd)
 # -----------------------------------------------------------------------------

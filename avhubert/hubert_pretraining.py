@@ -160,6 +160,11 @@ class AVHubertPretrainingConfig(FairseqDataclass):
     noise_num: int = field(default=1, metadata={'help': 'number of noise wav files to mix'})
     fine_tuning: bool = field(default=False, metadata={"help": "set to true if fine-tuning AV-Hubert"})
 
+    add_eos: bool = field(
+        default=True,
+        metadata={"help": "If set, adds an EOS token to the end of sequences"}
+    )
+
 @register_task("av_hubert_pretraining", dataclass=AVHubertPretrainingConfig)
 class AVHubertPretrainingTask(FairseqTask):
 

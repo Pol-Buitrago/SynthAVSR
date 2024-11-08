@@ -1,5 +1,5 @@
-WER: 4.752275025278059
-err / num_ref_words = 470 / 9890
+WER: 1.4964610717896865
+err / num_ref_words = 148 / 9890
 
 _name: null
 beam: 20
