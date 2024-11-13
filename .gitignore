@@ -1,6 +1,5 @@
 # Ignorar datasets
-avhubert/data/datasets/
-avhubert/data/demos/
+avhubert/data
 # Ignorar archivos de caché de Python
 __pycache__/
 # Ignorar la carpeta de configuración de VSCode
@@ -10,3 +9,6 @@ avhubert/checkpoints/
 # Logs and reports
 error/
 output/
+avhubert/experiment/
+# Ignorar envs
+avhubert/plots_env

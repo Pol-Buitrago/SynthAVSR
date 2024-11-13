@@ -1,0 +1,13 @@
+- dataset.gen_subset=valid
+- common_eval.path=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/experiment/finetune/20241112_113132-AV_3GPU/checkpoints/checkpoint_best.pt
+- common_eval.results_path=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/experiment/decode/s2s/valid/20241113_072737
+- override.modalities=[video,audio]
+- common.user_dir=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert
+- override.data=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/datasets/dataset_ES/LIP_RTVE/model_data
+- override.label_dir=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/datasets/dataset_ES/LIP_RTVE/model_data
+- generation.beam=40
+- generation.lenpen=0.1
+- override.tokenizer_bpe_model=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/checkpoints/AVSR_Finetuned_Models/Spanish_ES/tokenizer.model
+- override.labels=[wrd]
+- override.eval_bleu=False
+- override.use_normalizer=False

@@ -1,5 +1,0 @@
-- task.data=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/datasets/dataset_ES/LIP_RTVE/model_data
-- task.label_dir=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/datasets/dataset_ES/LIP_RTVE/model_data
-- +task.tokenizer_bpe_model=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/datasets/dataset_EN/lrs3/spm1000/spm_unigram1000.model
-- +model.w2v_path=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/checkpoints/Pretrained_Models/large_vox_iter5.pt
-- common.user_dir=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert

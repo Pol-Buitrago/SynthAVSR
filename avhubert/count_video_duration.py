@@ -39,4 +39,4 @@ def count_total_duration(folder_path):
 #count_total_duration("/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/datasets/dataset_EN/lrs3/pretrain")
 #count_total_duration("/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/datasets/dataset_EN/lrs3/trainval")
 #count_total_duration("/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/datasets/dataset_EN/lrs3/test")
-count_total_duration("/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/datasets/dataset_ES/LIP-RTVE/data/LIP-RTVE/mp4")
+count_total_duration("/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/datasets/dataset_ES/LIP_RTVE/mp4")

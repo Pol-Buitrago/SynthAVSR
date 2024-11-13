@@ -2,6 +2,13 @@ import os
 import sys
 import argparse
 from colorama import Fore, Style, init
+from datetime import datetime
+import subprocess
+import time
+
+"""
+python decode_avhubert.py --dataset_language Spanish --model_language Spanish --beam_size 20 --lenpen 1.0 --gen_subset test --use_normalizer
+"""
 
 # Inicializar colorama
 init(autoreset=True)
@@ -44,6 +51,10 @@ def get_language_paths(dataset_lang, model_lang, gen_subset):
 
     results_path = os.path.join(results_base_dir, gen_subset)
 
+    # Generar un identificador único para la ejecución basado en la fecha y hora
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    results_path = os.path.join(results_base_dir, gen_subset, timestamp)
+
     return {
         "checkpoint_path": os.path.join(model_dir, languages[model_lang], "best_ckpt.pt"),
         "dataset_dir": os.path.join(data_dir, datasets[dataset_lang]),
@@ -51,30 +62,6 @@ def get_language_paths(dataset_lang, model_lang, gen_subset):
         "predictor": "wrd",
         "results_path": results_path
     }
-
-"""
-def extract_wer_from_results(results_path):
-    # Buscar los archivos que comienzan con "wer" en el directorio
-    for filename in os.listdir(results_path):
-        if filename.lower().startswith('wer'):
-            result_file_path = os.path.join(results_path, filename)
-            break
-    else:
-        print("No se encontró archivo que empiece con 'wer' en el directorio.")
-        return None
-
-    # Leer el archivo para extraer el WER
-    with open(result_file_path, 'r') as file:
-        lines = file.readlines()
-    
-    wer_value = None
-    for line in lines:
-        if line.startswith("WER:"):
-            wer_value = line.split(" ")[1].strip()
-            break
-    
-    return wer_value
-"""
 
 # Argumentos de entrada
 parser = argparse.ArgumentParser(description="Script para realizar inferencias con AV-HuBERT")
@@ -98,7 +85,8 @@ USE_BLEU = False
 
 # Obtener rutas y configuraciones
 lang_paths = get_language_paths(args.dataset_language, args.model_language, args.gen_subset)
-CHECKPOINT_PATH = lang_paths["checkpoint_path"]
+CHECKPOINT_PATH = "/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/experiment/finetune/20241113_010354/checkpoints/checkpoint_best.pt"
+#CHECKPOINT_PATH = lang_paths["checkpoint_path"]
 DATASET_DIR = lang_paths["dataset_dir"]
 TOKENIZER_PATH = lang_paths["tokenizer_path"]
 TGT = lang_paths["predictor"]
@@ -110,7 +98,7 @@ cmd = (
     f"dataset.gen_subset={args.gen_subset} "
     f"common_eval.path={CHECKPOINT_PATH} "
     f"common_eval.results_path={RESULTS_PATH} "
-    f"override.modalities=[video,audio] "
+    f"override.modalities=[video] "
     f"common.user_dir=`pwd` "
     f"override.data={DATASET_DIR} "
     f"override.label_dir={DATASET_DIR} "
@@ -135,16 +123,34 @@ print(f"{Fore.YELLOW}Model Language:{Style.RESET_ALL} {args.model_language}")
 print(f"{Fore.MAGENTA}Gen Subset:{Style.RESET_ALL} {args.gen_subset}")
 print(f"{Fore.BLUE}Use Normalizer:{Style.RESET_ALL} {args.use_normalizer}\n")
 
-# Ejecutar el comando
-os.system(cmd)
+# Ejecutar el comando con subprocess
+process = subprocess.Popen(cmd, shell=True)
+process.communicate()  # Espera a que el proceso termine
 
-"""
-# Llamar a la función y mostrar el WER
-wer_value = extract_wer_from_results(RESULTS_PATH)
-if wer_value:
-    print(f"\n\n{Fore.GREEN}Word Error Rate (WER): {wer_value}\n\n")  # Color verde para el WER
+# Verificar si el archivo de resultados WER existe
+results_dir = RESULTS_PATH
+wer_file_pattern = "wer.*"  # Buscar archivos que empiecen con "wer."
+
+# Esperar un poco para que el archivo se genere
+time.sleep(10)
+
+# Buscar el archivo de WER más reciente
+wer_files = [f for f in os.listdir(results_dir) if f.startswith("wer")]
+if wer_files:
+    # Ordenar los archivos de WER por fecha de modificación
+    wer_file = max(wer_files, key=lambda f: os.path.getmtime(os.path.join(results_dir, f)))
+    wer_file_path = os.path.join(results_dir, wer_file)
+
+    # Leer el archivo WER y extraer el valor
+    with open(wer_file_path, 'r') as f:
+        content = f.read()
+        # Buscar la línea que contiene el WER
+        for line in content.splitlines():
+            if "WER:" in line:
+                wer_value = float(line.split("WER:")[1].strip())
+                print(f"WER: {wer_value}")
+                sys.exit(wer_value)  # Salir del script con el valor de WER
 else:
-    print(f"\n\n{Fore.RED}Ha ocurrido algún error en el cálculo del WER\n\n")  # Color rojo para los errores
-"""
-
+    print(f"No se encontró archivo WER en {results_dir}")
+    sys.exit(1)  # Salir con un código de error si no se encuentra el archivo
 

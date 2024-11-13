@@ -328,6 +328,19 @@ class AVHubertConfig(FairseqDataclass):
         default=False,
         metadata={"help": "recompute activations and save memory for extra compute"},
     )
+    
+    # Añadir wav_input como clave opcional con valor por defecto None
+    wav_input: Optional[str] = field(
+        default=None,
+        metadata={"help": "optional path to wav input if required"}
+    )
+
+    # Añadir w2v_path como clave opcional
+    w2v_path: Optional[str] = field(
+        default=None,
+        metadata={"help": "Path to the pre-trained Wav2Vec model if required"}
+    )
+
 
 class SubModel(nn.Module):
     def __init__(self, resnet=None, input_dim=None, cfg=None):
