@@ -1,41 +1,39 @@
-
-# Spanish-AVSR (Audiovisual Speech Recognition in Spanish) 🎤🇪🇸
+# SynthAVSR (Audiovisual Speech Recognition with Synthetic Data) 🎤🧑‍💻🌍  
 [Link to Paper - Coming Soon! 📄]
 
-## Introduction
-Spanish-AVSR is an adaptation of AV-HuBERT for Audiovisual Speech Recognition (AVSR) specifically in the Spanish language. Based on **AV-HuBERT**, a self-supervised framework, this project aims to bridge the gap in AVSR technology for Spanish, achieving state-of-the-art performance in lip-reading, ASR, and audiovisual speech recognition for Spanish speakers.
+## Introduction  
+SynthAVSR is an advanced framework for Audiovisual Speech Recognition (AVSR) that leverages synthetic data to bridge the gap in AVSR technology. Building upon **AV-HuBERT**, a self-supervised framework, this project aims to push the boundaries of AVSR by focusing on Spanish and Catalan languages. It uses a novel approach to generate synthetic audiovisual data for training, with the goal of achieving state-of-the-art performance in lip-reading, ASR, and audiovisual speech recognition.
 
-## Citation
-If you find Spanish-AVSR useful for your research, please cite our upcoming publication (details to be added here soon).
-
+## Citation  
+If you find SynthAVSR useful for your research, please cite our upcoming publication (details to be added here soon).
 
 ```BibTeX
-@article{buitrago2024spanishavsr,
+@article{buitrago2024synthavsr,
     author = {Pol Buitrago},
-    title = {Spanish-AVSR: Audio-Visual Speech Recognition for Spanish},
+    title = {SynthAVSR: Leveraging Synthetic Data for Advancing Audiovisual Speech Recognition},
     journal = {arXiv preprint (coming soon)},
     year = {2024}
 }
 ```
 
-## Pre-trained and Fine-tuned Models 🧩
+## Pre-trained and Fine-tuned Models 🧩  
 
-Checkpoints and models adapted for Spanish-AVSR will be made available [here](link-to-checkpoints).
+Checkpoints and models adapted for SynthAVSR will be made available [here](link-to-checkpoints).
 
-## Installation ⚙️
+## Installation ⚙️  
 
-To get started with Spanish-AVSR, set up a virtual environment using Conda:
+To get started with SynthAVSR, set up a virtual environment using Conda:
 
 ```bash
-conda create -n spanish_avsr python=3.8 -y
-conda activate spanish_avsr
+conda create -n synth_avsr python=3.8 -y
+conda activate synth_avsr
 ```
 
 Then, clone the repository:
 
 ```bash
-git clone https://github.com/Pol-Buitrago/Spanish-AVSR.git
-cd Spanish-AVSR
+git clone https://github.com/Pol-Buitrago/SynthAVSR.git
+cd SynthAVSR
 git submodule init
 git submodule update
 ```
@@ -47,21 +45,21 @@ pip install -r requirements.txt
 ```
 
 Lastly, install Fairseq and the other packages:
+
 ```bash
 pip install -r requirements.txt
 cd fairseq
 pip install --editable ./
 ```
 
-## Data Preparation 📊
-Follow the steps in [`data/preparation`](data/preparation) to preprocess:
+## Data Preparation 📊  
+Follow the steps in [`data/preparation`](data/preparation) to preprocess data and generate synthetic audiovisual inputs.
 
+## Decoding and Inference 🔍  
 
-## Decoding and Inference 🔍
+For lip reading, ASR, or full AVSR, use the provided script located at `avhubert/infer_AVSR.py`. This script allows you to perform inference on audiovisual inputs, leveraging pre-trained models.
 
-For lip reading, ASR, or full AVSR, use the provided script located at `avhubert/infer_AVSR.py`. This script allows you to perform inference on audio-visual inputs, leveraging pre-trained models.
-
-### Usage 🛠️
+### Usage 🛠️  
 
 To use the inference script, follow these steps:
 
@@ -69,7 +67,7 @@ To use the inference script, follow these steps:
 
 2. **Prepare your video file**: You need a video file containing the speaker's face (preferably in MP4 format).
 
-3. **Run the inference script**:
+3. **Run the inference script**:  
    Execute the script with the required arguments. You can choose from the following task types:
    - `AVSR`: Audio-Visual Speech Recognition
    - `ASR`: Automatic Speech Recognition
@@ -81,7 +79,7 @@ To use the inference script, follow these steps:
    python infer_AVSR.py --video_path /path/to/roi.mp4 --audio_path /path/to/clip.wav --task_type AVSR
    ```
 
-### Predict Function
+### Predict Function  
 
 The main function for prediction is defined as follows:
 ```python
@@ -99,11 +97,10 @@ def predict(task_type, video_path=None, audio_path=None, user_dir="", ckpt_path=
 #### Output:
 The function returns the predicted text based on the selected task type.
 
-### Notes 📝
-- Ensure that the paths to your video and checkpoint is correctly set.
+### Notes 📝  
+- Ensure that the paths to your video and checkpoint are correctly set.
 - The video should contain a clear view of the speaker's face for accurate lip reading.
 - The audio should be synchronized with the video for best results.
 
-
-## License 📜
+## License 📜  
 This project follows the AV-HuBERT LICENSE AGREEMENT by Meta Platforms, Inc. For full terms, see [LICENSE](link-to-license-file).
