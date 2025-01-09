@@ -1,8 +1,8 @@
-# SynthAVSR (Audiovisual Speech Recognition with Synthetic Data) 🎤🧑‍💻🌍  
+# SynthAVSR (Audiovisual Speech Recognition with Synthetic Data) 🎤🤖🌍
 [Link to Paper - Coming Soon! 📄]
 
 ## Introduction  
-SynthAVSR is an advanced framework for Audiovisual Speech Recognition (AVSR) that leverages synthetic data to bridge the gap in AVSR technology. Building upon **AV-HuBERT**, a self-supervised framework, this project aims to push the boundaries of AVSR by focusing on Spanish and Catalan languages. It uses a novel approach to generate synthetic audiovisual data for training, with the goal of achieving state-of-the-art performance in lip-reading, ASR, and audiovisual speech recognition.
+SynthAVSR is an advanced framework for Audiovisual Speech Recognition (AVSR) that leverages synthetic data to bridge the gap in AVSR technology. Building upon **AV-HuBERT**, a self-supervised framework, this project aims to push the boundaries of AVSR by focusing on Spanish🇪🇸 and Catalan languages. It uses a novel approach to generate synthetic audiovisual data for training, with the goal of achieving state-of-the-art performance in lip-reading, ASR, and audiovisual speech recognition.
 
 ## Citation  
 If you find SynthAVSR useful for your research, please cite our upcoming publication (details to be added here soon).
