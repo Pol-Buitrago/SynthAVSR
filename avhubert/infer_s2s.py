@@ -42,14 +42,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from omegaconf import OmegaConf
 import sacrebleu
 
-########################### NORMALIZER ###########################
-#from whisper_normalizer.basic import BasicTextNormalizer
-from whisper_normalizer.english import EnglishTextNormalizer
-
-# Inicializar el normalizador
-# normalizer = BasicTextNormalizer()
-normalizer = EnglishTextNormalizer()
-###################################################################
+from normalize_transcription import normalize_text
 
 logging.root.setLevel(logging.INFO)
 logging.basicConfig(level=logging.INFO)
@@ -260,8 +253,8 @@ def _main(cfg, output_file):
 
             ######## WHISPER NORMALIZER ########
             if cfg.override.use_normalizer:
-                hypo_str = normalizer(hypo_str)
-                ref_sent = normalizer(ref_sent)
+                hypo_str = normalize_text(hypo_str)
+                ref_sent = normalize_text(ref_sent)
             ####################################
 
             result_dict['hypo'].append(hypo_str)

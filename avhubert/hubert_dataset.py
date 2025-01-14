@@ -175,6 +175,7 @@ class AVHubertDataset(FairseqDataset):
             else label_rates
         )
         self.modalities = set(modalities)
+
         self.audio_root, self.names, inds, tot, self.sizes = load_audio_visual(manifest_path, max_keep_sample_size, min_keep_sample_size, frame_rate=sample_rate, label_paths=label_paths, label_rates=self.label_rates)
         self.sample_rate = sample_rate
         self.stack_order_audio = stack_order_audio

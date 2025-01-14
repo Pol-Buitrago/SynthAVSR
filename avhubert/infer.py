@@ -6,10 +6,10 @@ from colorama import init, Fore, Style
 ########################## Modificar aquí las rutas ##############################################
 ##################################################################################################
 # Ruta base a los datos
-base_data_dir = "/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/demos/demo_ES"
+base_data_dir = "/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/demos"
 
 # Definición de las variables de entrada
-task_type = 'AVSR'  # Cambia a 'ALL' para ejecutar todas las modalidades
+task_type = 'ALL'  # Cambia a 'ALL' para ejecutar todas las modalidades
 video_path = os.path.join(base_data_dir, "clip.mp4")
 audio_path = os.path.join(base_data_dir, "clip.wav")
 transcription_path = os.path.join(base_data_dir, "clip.txt")

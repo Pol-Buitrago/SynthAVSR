@@ -18,9 +18,9 @@ checkpoint:
 distributed_training:
   ddp_backend: c10d
   find_unused_parameters: true
-  distributed_world_size: 8
+  distributed_world_size: 4
   distributed_port: 29671
-  nprocs_per_node: 8
+  nprocs_per_node: 4
 
 task:
   _name: av_hubert_pretraining
@@ -54,7 +54,7 @@ criterion:
   label_smoothing: 0.1
 
 optimization:
-  max_update: 45000
+  max_update: 450000
   lr: [0.001]
   sentence_avg: true
   update_freq: [1]

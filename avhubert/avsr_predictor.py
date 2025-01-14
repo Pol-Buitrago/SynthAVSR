@@ -12,7 +12,7 @@ from fairseq.dataclass.configs import GenerationConfig
 from jiwer import wer  # Importar jiwer para calcular el WER
 from num2words import num2words
 import re
-
+import shutil
 
 def predict(task_type, video_path=None, audio_path=None, transcription_path=None, user_dir="", ckpt_path="", suppress_warnings=True):
     """
@@ -67,19 +67,27 @@ def predict(task_type, video_path=None, audio_path=None, transcription_path=None
     base_ckpt_path = "/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/checkpoints"
     data_dir = tempfile.mkdtemp()
 
+    source_path = '/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/data/datasets/dataset_ES/LIP_RTVE/model_data/dict.wrd.txt'
+    print(f"Directorio temporal creado en: {data_dir}")
+    destination_path = os.path.join(data_dir, 'dict.wrd.txt')
+    shutil.copy(source_path, destination_path)
+
     # Crear archivos TSV y etiquetas según tipo de tarea
     if task_type == "AVSR":
         tsv_cont = ["/\n", f"test-0\t{roi_path}\t{audio_path}\t{num_frames}\t{duration_ms}\n"]
         modalities = ["audio", "video"]
-        ckpt_path = os.path.join(base_ckpt_path, "AVSR_Finetuned_Models", "English_EN", "best_ckpt.pt")
+        ckpt_path = os.path.join(base_ckpt_path, "custom_trained_checkpoints", "AVSR_checkpoint_best.pt")
+
     elif task_type == "ASR":
         tsv_cont = ["/\n", f"test-0\t{None}\t{audio_path}\t{num_frames}\t{duration_ms}\n"]
         modalities = ["audio"]
-        ckpt_path = os.path.join(base_ckpt_path, "AVSR_Finetuned_Models", "English_EN", "large_noise_pt_noise_ft_433h.pt")
+        ckpt_path = os.path.join(base_ckpt_path, "custom_trained_checkpoints", "ASR_checkpoint_best.pt")
+
     elif task_type == "VSR":
         tsv_cont = ["/\n", f"test-0\t{roi_path}\t{None}\t{num_frames}\t{duration_ms}\n"]
         modalities = ["video"]
-        ckpt_path = os.path.join(base_ckpt_path, "VSR_Finetuned_Models", "self_large_vox_433h.pt")
+        ckpt_path = os.path.join(base_ckpt_path, "custom_trained_checkpoints", "VSR_checkpoint_best.pt")
+
     else:
         raise ValueError("Tipo de tarea inválido. Por favor, elige 'AVSR', 'ASR', o 'VSR'.")
 

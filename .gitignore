@@ -1,14 +1,26 @@
-# Ignorar datasets
-avhubert/data
-# Ignorar archivos de caché de Python
+# Data files
+data/
+
+# Python bytecode
 __pycache__/
-# Ignorar la carpeta de configuración de VSCode
+
+# VS Code settings
 .vscode/
-# Ignorar checkpoints
-avhubert/checkpoints/
-# Logs and reports
-error/
+
+# Experiment and output files
 output/
-avhubert/experiment/
-# Ignorar envs
-avhubert/plots_env
+error/
+experiment/
+
+# Checkpoints (models, training)
+avhubert/checkpoints/
+Wav2Lip/checkpoints
+
+# Temporary and working directories
+Wav2Lip/temp
+
+# Backyard scripts (custom scripts and experiments)
+avhubert/backyard scripts
+Wav2Lip/backyard scripts
+
+others/

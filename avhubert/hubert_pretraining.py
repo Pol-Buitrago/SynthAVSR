@@ -246,6 +246,8 @@ class AVHubertPretrainingTask(FairseqTask):
         paths = [
             f"{self.get_label_dir()}/{split}.{l}" for l in self.cfg.labels
         ]
+
+
         image_aug = self.cfg.image_aug if split == 'train' else False
         noise_fn, noise_snr = f"{self.cfg.noise_wav}/{split}.tsv" if self.cfg.noise_wav is not None else None, eval(self.cfg.noise_snr)
         noise_num = self.cfg.noise_num # 
