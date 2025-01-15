@@ -26,7 +26,7 @@ If you find SynthAVSR useful for your research, please cite our upcoming publica
 
 ## **Fine-tuned Models 🧩**  
 
-Checkpoints and models adapted for SynthAVSR will be made available [here](link-to-checkpoints). Below is a summary of the available checkpoints:
+Checkpoints and models adapted for SynthAVSR will be made available [here](link-to-checkpoints).
 
 ---
 
