@@ -1,10 +1,16 @@
-# SynthAVSR (Audiovisual Speech Recognition with Synthetic Data) 🎤🤖🌍
-[Link to Paper - Coming Soon! 📄]
+---
 
-## Introduction  
-SynthAVSR is an advanced framework for Audiovisual Speech Recognition (AVSR) that leverages synthetic data to bridge the gap in AVSR technology. Building upon **AV-HuBERT**, a self-supervised framework, this project aims to push the boundaries of AVSR by focusing on Spanish🇪🇸 and Catalan languages. It uses a novel approach to generate synthetic audiovisual data for training, with the goal of achieving state-of-the-art performance in lip-reading, ASR, and audiovisual speech recognition.
+# **SynthAVSR (Audiovisual Speech Recognition with Synthetic Data) 🎤🤖🌍**
 
-## Citation  
+[Link to Paper - Coming Soon! 📄]  
+[Link to Thesis - Coming Soon! 📚]
+
+## **Introduction**  
+SynthAVSR is an advanced framework for Audiovisual Speech Recognition (AVSR) that leverages synthetic data to bridge the gap in AVSR technology. Building upon **AV-HuBERT**, a self-supervised framework, this project aims to push the boundaries of AVSR by focusing on Spanish🇪🇸 and Catalan languages. It uses a novel approach to generate synthetic audiovisual data for training, with the goal of achieving state-of-the-art performance in lip-reading, ASR, and audiovisual speech recognition. 🌟
+
+---
+
+## **Citation**  
 If you find SynthAVSR useful for your research, please cite our upcoming publication (details to be added here soon).
 
 ```BibTeX
@@ -16,91 +22,100 @@ If you find SynthAVSR useful for your research, please cite our upcoming publica
 }
 ```
 
-## Pre-trained and Fine-tuned Models 🧩  
+---
 
-Checkpoints and models adapted for SynthAVSR will be made available [here](link-to-checkpoints).
+## **Fine-tuned Models 🧩**  
 
-## Installation ⚙️  
+Checkpoints and models adapted for SynthAVSR will be made available [here](link-to-checkpoints). Below is a summary of the available checkpoints:
 
-To get started with SynthAVSR, set up a virtual environment using Conda:
+---
 
-```bash
-conda create -n synth_avsr python=3.8 -y
-conda activate synth_avsr
-```
+### Model Performance (WER) 🎯
 
-Then, clone the repository:
+#### AVSR Model Results
 
-```bash
-git clone https://github.com/Pol-Buitrago/SynthAVSR.git
-cd SynthAVSR
-git submodule init
-git submodule update
-```
+| Model                 | LIP-RTVE       | CMU-MOSEAS<sub>ES</sub>        | MuAViC<sub>ES</sub>       |
+|-----------------------|-----------------|----------------------|-----------------|
+| **RealAVSR**           | 9.3%            | 15.4%                | 16.6%           |
+| **SynthAVSR<sub>GAN</sub>**     | 21.1%           | 35.2%                | 39.6%           |
+| **MixAVSR**            | 8.2%            | 14.2%                | 15.7%           |
 
-Install the required dependencies:
+| Model                 | AVCAT-Benchmark |
+|-----------------------|-----------------|
+| **CAT-AVSR**           | 25%             |
 
-```bash
-pip install -r requirements.txt
-```
+---
 
-Lastly, install Fairseq and the other packages:
+## **Installation ⚙️**  
+To get started with SynthAVSR, set up a Conda environment using the `SynthAVSR.yml` file provided:
 
-```bash
-pip install -r requirements.txt
-cd fairseq
-pip install --editable ./
-```
-
-## Data Preparation 📊  
-Follow the steps in [`data/preparation`](data/preparation) to preprocess data and generate synthetic audiovisual inputs.
-
-## Decoding and Inference 🔍  
-
-For lip reading, ASR, or full AVSR, use the provided script located at `avhubert/infer_AVSR.py`. This script allows you to perform inference on audiovisual inputs, leveraging pre-trained models.
-
-### Usage 🛠️  
-
-To use the inference script, follow these steps:
-
-1. **Set up your environment**: Ensure you have all the necessary dependencies installed and have activated your Conda environment.
-
-2. **Prepare your video file**: You need a video file containing the speaker's face (preferably in MP4 format).
-
-3. **Run the inference script**:  
-   Execute the script with the required arguments. You can choose from the following task types:
-   - `AVSR`: Audio-Visual Speech Recognition
-   - `ASR`: Automatic Speech Recognition
-   - `VSR`: Visual Speech Recognition
-   - `ALL`: Run all tasks sequentially
-
-   Example command to run the script:
+1. **Create and activate the environment:**
    ```bash
-   python infer_AVSR.py --video_path /path/to/roi.mp4 --audio_path /path/to/clip.wav --task_type AVSR
+   conda env create -f SynthAVSR.yml
+   conda activate synth_avsr
    ```
 
-### Predict Function  
+2. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Pol-Buitrago/SynthAVSR.git
+   cd SynthAVSR
+   git submodule init
+   git submodule update
+   ```
 
-The main function for prediction is defined as follows:
-```python
-def predict(task_type, video_path=None, audio_path=None, user_dir="", ckpt_path="", suppress_warnings=True):
+---
+
+## **Data Preparation 📊**  
+Follow the steps in [`preparation`](avhubert/preparation/) to pre-process:
+
+- LRS3 and VoxCeleb2 datasets
+
+Follow the steps in [`clustering`](avhubert/clustering/) (for pre-training only) to create:
+- `{train, valid}.km` frame-aligned pseudo label files.  
+The `label_rate` is the same as the feature frame rate used for clustering, which is 100Hz for MFCC features and 25Hz for AV-HuBERT features by default.
+
+---
+
+## **Training and Fine-tuning AV-HuBERT Models**  
+
+### **Pre-train an AV-HuBERT model**  
+To train a model, run the following command, adjusting paths as necessary:
+```sh
+$ cd avhubert
+$ fairseq-hydra-train --config-dir /path/to/conf/ --config-name conf-name \
+  task.data=/path/to/data task.label_dir=/path/to/label \
+  model.label_rate=100 hydra.run.dir=/path/to/experiment/pretrain/ \
+  common.user_dir=`pwd`
 ```
 
-#### Parameters:
-- `task_type`: Specifies the type of task to perform (`AVSR`, `ASR`, `VSR`, or `ALL`).
-- `video_path`: Path to the video file containing the lip movement.
-- `audio_path`: Path to the audio file corresponding to the video.
-- `user_dir`: Directory for user-defined modules (optional).
-- `ckpt_path`: Path to the model checkpoint (optional).
-- `suppress_warnings`: Flag to suppress warnings during execution.
+### **Fine-tune an AV-HuBERT model with Seq2Seq**  
+To fine-tune a pre-trained HuBERT model at `/path/to/checkpoint`, run:
+```sh
+$ cd avhubert
+$ fairseq-hydra-train --config-dir /path/to/conf/ --config-name conf-name \
+  task.data=/path/to/data task.label_dir=/path/to/label \
+  task.tokenizer_bpe_model=/path/to/tokenizer model.w2v_path=/path/to/checkpoint \
+  hydra.run.dir=/path/to/experiment/finetune/ common.user_dir=`pwd`
+```
 
-#### Output:
-The function returns the predicted text based on the selected task type.
+### **Decode an AV-HuBERT model**  
+To decode a fine-tuned model, run:
+```sh
+$ cd avhubert
+$ python -B infer_s2s.py --config-dir ./conf/ --config-name conf-name \
+  dataset.gen_subset=test common_eval.path=/path/to/checkpoint \
+  common_eval.results_path=/path/to/experiment/decode/s2s/test \
+  override.modalities=['video'] common.user_dir=`pwd`
+```
+Parameters like `generation.beam` and `generation.lenpen` can be adjusted to fine-tune the decoding process.
 
-### Notes 📝  
-- Ensure that the paths to your video and checkpoint are correctly set.
-- The video should contain a clear view of the speaker's face for accurate lip reading.
-- The audio should be synchronized with the video for best results.
+---
 
-## License 📜  
-This project follows the AV-HuBERT LICENSE AGREEMENT by Meta Platforms, Inc. For full terms, see [LICENSE](link-to-license-file).
+## License 📜
+
+This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0).
+You can freely share, modify, and distribute the code, but it cannot be used for commercial purposes.
+
+See the [full license text](https://creativecommons.org/licenses/by-nc/4.0/legalcode).
+
+---
