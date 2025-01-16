@@ -26,7 +26,13 @@ If you find SynthAVSR useful for your research, please cite our upcoming publica
 
 ## **Fine-tuned Models 🧩**  
 
-Checkpoints and models adapted for SynthAVSR will be made available [here](link-to-checkpoints).
+Checkpoints and models adapted for our project are available in the table below:
+
+| Modality               | MixAVSR           | RealAVSR          | SynthAVSR<sub>GAN</sub>      | CAT-AVSR          |
+|------------------------|-------------------|-------------------|------------------------------|-------------------|
+| **AudioVisual**        | [Download](link)  | [Download](link)  | [Download](link)             | [Download](link)  |
+| **Audio-Only**         | [Download](link)  | [Download](link)  | [Download](link)             | [Download](link)  |
+| **Visual-Only**        | [Download](link)  | [Download](link)  | [Download](link)             | [Download](link)  |
 
 ---
 
@@ -34,17 +40,18 @@ Checkpoints and models adapted for SynthAVSR will be made available [here](link-
 
 #### AVSR Model Results
 
-| Model                 | LIP-RTVE       | CMU-MOSEAS<sub>ES</sub>        | MuAViC<sub>ES</sub>       |
-|-----------------------|-----------------|----------------------|-----------------|
-| **RealAVSR**           | 9.3%            | 15.4%                | 16.6%           |
-| **SynthAVSR<sub>GAN</sub>**     | 21.1%           | 35.2%                | 39.6%           |
-| **MixAVSR**            | 8.2%            | 14.2%                | 15.7%           |
+| Model                           | LIP-RTVE        | CMU-MOSEAS<sub>ES</sub>        | MuAViC<sub>ES</sub>       |
+|---------------------------------|-----------------|--------------------------------|---------------------------|
+| **MixAVSR**                     | 8.2%            | 14.2%                          | 15.7%                     |
+| **RealAVSR**                    | 9.3%            | 15.4%                          | 16.6%                     |
+| **SynthAVSR<sub>GAN</sub>**     | 21.1%           | 35.2%                          | 39.6%                     | 
 
 | Model                 | AVCAT-Benchmark |
 |-----------------------|-----------------|
-| **CAT-AVSR**           | 25%             |
+| **CAT-AVSR**          | 25%             |
 
 ---
+
 
 ## **Installation ⚙️**  
 To get started with SynthAVSR, set up a Conda environment using the `SynthAVSR.yml` file provided:
