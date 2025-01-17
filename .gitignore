@@ -11,9 +11,10 @@ __pycache__/
 output/
 error/
 experiment/
+avhubert/outputs
 
 # Checkpoints (models, training)
-avhubert/checkpoints/
+avhubert/checkpoints
 Wav2Lip/checkpoints
 
 # Temporary and working directories
