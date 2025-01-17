@@ -30,9 +30,9 @@ Checkpoints and models adapted for our project are available in the table below:
 
 | Modality               | MixAVSR           | RealAVSR          | SynthAVSR<sub>GAN</sub>      | CAT-AVSR          |
 |------------------------|-------------------|-------------------|------------------------------|-------------------|
-| **AudioVisual**        | [Download]([link](https://zenodo.org/records/14679978/files/MixAVSR_AV.pt?download=1))  | [Download]([link](https://zenodo.org/records/14679978/files/RealAVSR_AV.pt?download=1))  | [Download]([link](https://zenodo.org/records/14679978/files/SynthAVSR(GAN)_AV.pt?download=1))             | [Download](link)  |
-| **Audio-Only**         | [Download]([link](https://zenodo.org/records/14679978/files/MixAVSR_A.pt?download=1))  | [Download]([link](https://zenodo.org/records/14679978/files/RealAVSR_A.pt?download=1))  | [Download]([link](https://zenodo.org/records/14679978/files/SynthAVSR(GAN)_A.pt?download=1))             | [Download](link)  |
-| **Visual-Only**        | [Download]([link](https://zenodo.org/records/14679978/files/MixAVSR_V.pt?download=1))  | [Download]([link](https://zenodo.org/records/14679978/files/RealAVSR_V.pt?download=1))  | [Download]([link](https://zenodo.org/records/14679978/files/SynthAVSR(GAN)_V.pt?download=1))             | [Download](link)  |
+| **AudioVisual**        | [Download](https://zenodo.org/records/14679978/files/MixAVSR_AV.pt?download=1)  | [Download](https://zenodo.org/records/14679978/files/RealAVSR_AV.pt?download=1)  | [Download](https://zenodo.org/records/14679978/files/SynthAVSR(GAN)_AV.pt?download=1)             | [Download](link)  |
+| **Audio-Only**         | [Download](https://zenodo.org/records/14679978/files/MixAVSR_A.pt?download=1)  | [Download](https://zenodo.org/records/14679978/files/RealAVSR_A.pt?download=1)  | [Download](https://zenodo.org/records/14679978/files/SynthAVSR(GAN)_A.pt?download=1)             | [Download](link)  |
+| **Visual-Only**        | [Download](https://zenodo.org/records/14679978/files/MixAVSR_V.pt?download=1)  | [Download](https://zenodo.org/records/14679978/files/RealAVSR_V.pt?download=1)  | [Download](https://zenodo.org/records/14679978/files/SynthAVSR(GAN)_V.pt?download=1)             | [Download](link)  |
 
 ---
 
