@@ -1,0 +1,14 @@
+- dataset.gen_subset=test
+- common_eval.path=/gpfs/projects/bsc88/speech/research/repos/av_hubert/experiment/finetune/A/SynthAV-CAT_gan/base_vox/20250104_020219/checkpoints/checkpoint_best.pt
+- common_eval.results_path=/gpfs/projects/bsc88/speech/research/repos/av_hubert/experiment/decode/s2s/test/A/AVCAT/CAT-AVSR/20250116_165403
+- override.modalities=[audio]
+- common.user_dir=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert
+- override.data=/gpfs/projects/bsc88/speech/research/repos/av_hubert/data/Manifests/CAT/AVCAT-Benchmark/data/model_data
+- override.label_dir=/gpfs/projects/bsc88/speech/research/repos/av_hubert/data/Manifests/CAT/AVCAT-Benchmark/data/model_data
+- generation.beam=20
+- generation.lenpen=1.5
+- override.labels=[wrd]
+- override.use_normalizer=False
+- +override.noise_wav=/gpfs/projects/bsc88/speech/research/repos/av_hubert/data/musan/tsv/noise
+- override.noise_prob=1.0
+- override.noise_snr=35.5

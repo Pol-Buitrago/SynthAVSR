@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Define las combinaciones de modalidades y tipos de ruido
-MODALITIES_LIST=("audio,video" "audio" "video")
-NOISE_TYPES_LIST=("music" "babble" "noise" "all")
+MODALITIES_LIST=("audio")
+NOISE_TYPES_LIST=("noise")
 
 # Itera sobre todas las combinaciones de modalidades y tipos de ruido
 for MODALITIES in "${MODALITIES_LIST[@]}"; do

@@ -1,0 +1,139 @@
+hydra:
+  run:
+    dir: outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}
+  sweep:
+    dir: multirun/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    subdir: ${hydra.job.num}
+  hydra_logging:
+    version: 1
+    formatters:
+      simple:
+        format: '[%(asctime)s][HYDRA] %(message)s'
+    handlers:
+      console:
+        class: logging.StreamHandler
+        formatter: simple
+        stream: ext://sys.stdout
+    root:
+      level: INFO
+      handlers:
+      - console
+    loggers:
+      logging_example:
+        level: DEBUG
+    disable_existing_loggers: false
+  job_logging:
+    version: 1
+    formatters:
+      simple:
+        format: '[%(asctime)s][%(name)s][%(levelname)s] - %(message)s'
+    handlers:
+      console:
+        class: logging.StreamHandler
+        formatter: simple
+        stream: ext://sys.stdout
+      file:
+        class: logging.FileHandler
+        formatter: simple
+        filename: ${hydra.job.name}.log
+    root:
+      level: INFO
+      handlers:
+      - console
+      - file
+    disable_existing_loggers: false
+  sweeper:
+    _target_: hydra._internal.core_plugins.basic_sweeper.BasicSweeper
+    max_batch_size: null
+  launcher:
+    _target_: hydra._internal.core_plugins.basic_launcher.BasicLauncher
+  help:
+    app_name: ${hydra.job.name}
+    header: '${hydra.help.app_name} is powered by Hydra.
+
+      '
+    footer: 'Powered by Hydra (https://hydra.cc)
+
+      Use --hydra-help to view Hydra specific help
+
+      '
+    template: '${hydra.help.header}
+
+      == Configuration groups ==
+
+      Compose your configuration from those groups (group=option)
+
+
+      $APP_CONFIG_GROUPS
+
+
+      == Config ==
+
+      Override anything in the config (foo.bar=value)
+
+
+      $CONFIG
+
+
+      ${hydra.help.footer}
+
+      '
+  hydra_help:
+    hydra_help: ???
+    template: 'Hydra (${hydra.runtime.version})
+
+      See https://hydra.cc for more info.
+
+
+      == Flags ==
+
+      $FLAGS_HELP
+
+
+      == Configuration groups ==
+
+      Compose your configuration from those groups (For example, append hydra/job_logging=disabled
+      to command line)
+
+
+      $HYDRA_CONFIG_GROUPS
+
+
+      Use ''--cfg hydra'' to Show the Hydra config.
+
+      '
+  output_subdir: .hydra
+  overrides:
+    hydra: []
+    task:
+    - dataset.gen_subset=test
+    - common_eval.path=/gpfs/projects/bsc88/speech/research/repos/av_hubert/experiment/finetune/A/SynthAV-CAT_gan/base_vox/20250104_020219/checkpoints/checkpoint_best.pt
+    - common_eval.results_path=/gpfs/projects/bsc88/speech/research/repos/av_hubert/experiment/decode/s2s/test/A/AVCAT/CAT-AVSR/20250116_134301
+    - override.modalities=[audio]
+    - common.user_dir=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert
+    - override.data=/gpfs/projects/bsc88/speech/research/repos/av_hubert/data/Manifests/CAT/AVCAT-Benchmark/data/model_data
+    - override.label_dir=/gpfs/projects/bsc88/speech/research/repos/av_hubert/data/Manifests/CAT/AVCAT-Benchmark/data/model_data
+    - generation.beam=20
+    - generation.lenpen=1.5
+    - override.labels=[wrd]
+    - override.use_normalizer=False
+    - +override.noise_wav=/gpfs/projects/bsc88/speech/research/repos/av_hubert/data/musan/tsv/noise
+    - override.noise_prob=1.0
+    - override.noise_snr=-94.5
+  job:
+    name: infer_s2s
+    override_dirname: +override.noise_wav=/gpfs/projects/bsc88/speech/research/repos/av_hubert/data/musan/tsv/noise,common.user_dir=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert,common_eval.path=/gpfs/projects/bsc88/speech/research/repos/av_hubert/experiment/finetune/A/SynthAV-CAT_gan/base_vox/20250104_020219/checkpoints/checkpoint_best.pt,common_eval.results_path=/gpfs/projects/bsc88/speech/research/repos/av_hubert/experiment/decode/s2s/test/A/AVCAT/CAT-AVSR/20250116_134301,dataset.gen_subset=test,generation.beam=20,generation.lenpen=1.5,override.data=/gpfs/projects/bsc88/speech/research/repos/av_hubert/data/Manifests/CAT/AVCAT-Benchmark/data/model_data,override.label_dir=/gpfs/projects/bsc88/speech/research/repos/av_hubert/data/Manifests/CAT/AVCAT-Benchmark/data/model_data,override.labels=[wrd],override.modalities=[audio],override.noise_prob=1.0,override.noise_snr=-94.5,override.use_normalizer=False
+    id: ???
+    num: ???
+    config_name: s2s_decode.yaml
+    env_set: {}
+    env_copy: []
+    config:
+      override_dirname:
+        kv_sep: '='
+        item_sep: ','
+        exclude_keys: []
+  runtime:
+    version: 1.0.7
+    cwd: /gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert
+  verbose: false

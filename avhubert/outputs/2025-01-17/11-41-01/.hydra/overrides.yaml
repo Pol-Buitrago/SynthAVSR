@@ -1,0 +1,11 @@
+- dataset.gen_subset=test
+- common_eval.path=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert/checkpoints/AVSR_Finetuned_Models/Spanish_ES/best_ckpt.pt
+- common_eval.results_path=/gpfs/projects/bsc88/speech/research/repos/av_hubert/experiment/decode/s2s/test/A/LIP-RTVE/Muavic_es/20250117_114054
+- override.modalities=[audio]
+- common.user_dir=/gpfs/projects/bsc88/speech/research/repos/av_hubert/avhubert
+- override.data=/gpfs/projects/bsc88/speech/research/repos/av_hubert/data/Manifests/LIP-RTVE/data/model_data
+- override.label_dir=/gpfs/projects/bsc88/speech/research/repos/av_hubert/data/Manifests/LIP-RTVE/data/model_data
+- generation.beam=20
+- generation.lenpen=1.0
+- override.labels=[wrd]
+- override.use_normalizer=False
