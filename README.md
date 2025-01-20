@@ -75,7 +75,7 @@ To get started with SynthAVSR, set up a Conda environment using the `SynthAVSR.y
 ## **Data Preparation 📊**  
 Follow the steps in [`preparation`](avhubert/preparation/) to pre-process:
 
-- LRS3 and VoxCeleb2 datasets
+- LRS3 and VoxCeleb2 datasets. For any other dataset, follow an analogous procedure.
 
 Follow the steps in [`clustering`](avhubert/clustering/) (for pre-training only) to create:
 - `{train, valid}.km` frame-aligned pseudo label files.  
@@ -112,7 +112,7 @@ $ cd avhubert
 $ python -B infer_s2s.py --config-dir ./conf/ --config-name conf-name \
   dataset.gen_subset=test common_eval.path=/path/to/checkpoint \
   common_eval.results_path=/path/to/experiment/decode/s2s/test \
-  override.modalities=['video'] common.user_dir=`pwd`
+  override.modalities=['auido,video'] common.user_dir=`pwd`
 ```
 Parameters like `generation.beam` and `generation.lenpen` can be adjusted to fine-tune the decoding process.
 
