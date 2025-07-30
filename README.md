@@ -28,7 +28,7 @@ If you find SynthAVSR useful for your research, please cite our upcoming publica
 
 Checkpoints and models adapted for our project are available in the table below:
 
-| Modality               | MixAVSR           | RealAVSR          | SynthAVSR<sub>GAN</sub>      | CAT-AVSR          |
+| Modality               | MixSpeech<sub>es</sub>           | RealSpeech<sub>es</sub>          | SynthSpeech<sub>es</sub>      | **SynthSpeech<sub>cat</sub>**          |
 |------------------------|-------------------|-------------------|------------------------------|-------------------|
 | **AudioVisual**        | [Download](https://zenodo.org/records/14679978/files/MixAVSR_AV.pt?download=1)  | [Download](https://zenodo.org/records/14679978/files/RealAVSR_AV.pt?download=1)  | [Download](https://zenodo.org/records/14679978/files/SynthAVSR(GAN)_AV.pt?download=1)             | [Download](https://zenodo.org/records/14680155/files/CAT-AVSR_AV.pt?download=1)  |
 | **Audio-Only**         | [Download](https://zenodo.org/records/14679978/files/MixAVSR_A.pt?download=1)  | [Download](https://zenodo.org/records/14679978/files/RealAVSR_A.pt?download=1)  | [Download](https://zenodo.org/records/14679978/files/SynthAVSR(GAN)_A.pt?download=1)             | [Download](https://zenodo.org/records/14680155/files/CAT-AVSR_A.pt?download=1)  |
@@ -42,13 +42,13 @@ Checkpoints and models adapted for our project are available in the table below:
 
 | Model                           | LIP-RTVE        | CMU-MOSEAS<sub>ES</sub>        | MuAViC<sub>ES</sub>       |
 |---------------------------------|-----------------|--------------------------------|---------------------------|
-| **MixAVSR**                     | 8.2%            | 14.2%                          | 15.7%                     |
-| **RealAVSR**                    | 9.3%            | 15.4%                          | 16.6%                     |
-| **SynthAVSR<sub>GAN</sub>**     | 21.1%           | 35.2%                          | 39.6%                     | 
+| **MixSpeech<sub>es</sub>**                     | 8.2%            | 14.2%                          | 15.7%                     |
+| **RealSpeech<sub>es</sub>**                    | 9.3%            | 15.4%                          | 16.6%                     |
+| **SynthSpeech<sub>es</sub>**     | 21.1%           | 35.2%                          | 39.6%                     | 
 
 | Model                 | AVCAT-Benchmark |
 |-----------------------|-----------------|
-| **CAT-AVSR**          | 25%             |
+| **SynthSpeech<sub>cat</sub>**          | 25%             |
 
 ---
 
