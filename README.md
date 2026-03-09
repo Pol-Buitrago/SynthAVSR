@@ -104,9 +104,7 @@ Parameters like `generation.beam` and `generation.lenpen` can be adjusted to fin
 
 ## License 📜
 
-This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0).
-You can freely share, modify, and distribute the code, but it cannot be used for commercial purposes.
-
-See the [full license text](https://creativecommons.org/licenses/by-nc/4.0/legalcode).
+This project is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0).
+You are free to share, copy, modify, and distribute this work, including for commercial purposes, as long as proper attribution is given to the original author.
 
 ---
