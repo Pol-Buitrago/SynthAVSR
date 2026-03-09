@@ -26,13 +26,13 @@ Checkpoints and models adapted for our project are available in the table below:
 
 | Model                           | LIP-RTVE        | CMU-MOSEAS<sub>ES</sub>        | MuAViC<sub>ES</sub>       |
 |---------------------------------|-----------------|--------------------------------|---------------------------|
-| **MixSpeech<sub>es</sub>**                     | 8.2%            | 14.2%                          | 15.7%                     |
+| **MixSpeech<sub>es</sub>**                     | 8.1%            | 12.9%                          | 15.7%                     |
 | **RealSpeech<sub>es</sub>**                    | 9.3%            | 15.4%                          | 16.6%                     |
 | **SynthSpeech<sub>es</sub>**     | 21.1%           | 35.2%                          | 39.6%                     | 
 
 | Model                 | AVCAT-Benchmark |
 |-----------------------|-----------------|
-| **SynthSpeech<sub>cat</sub>**          | 25%             |
+| **SynthSpeech<sub>cat</sub>**          | 19.6%             |
 
 ---
 
